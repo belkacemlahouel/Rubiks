@@ -161,4 +161,34 @@ public class Cube44 {
 			faces.get("bot").elems[i][col] = tmp[i];
 		}
 	}
+
+	public void tup() {
+		swapFaces("fore", "bot");
+		swapFaces("bot", "back");
+		swapFaces("back", "top");
+	}
+	
+	public void tdown() {
+		swapFaces("fore", "top");
+		swapFaces("top", "back");
+		swapFaces("back", "bot");
+	}
+	
+	public void tright() {
+		swapFaces("fore", "left");
+		swapFaces("left", "back");
+		swapFaces("back", "right");
+	}
+	
+	public void tleft() {
+		swapFaces("fore", "right");
+		swapFaces("right", "back");
+		swapFaces("back", "left");
+	}
+	
+	private void swapFaces(String a, String b) {
+		Face44 face = faces.get(a);
+		faces.replace(a, faces.get(b));
+		faces.replace(b, face);
+	}
 }

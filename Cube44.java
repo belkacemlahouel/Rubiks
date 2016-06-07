@@ -65,4 +65,60 @@ public class Cube44 {
 		
 		return str.toString();
 	}
+
+	public void tright(int line) {
+		int[] tmp = new int[4];
+		int[] tmp2 = new int[4];
+		
+		for (int i = 0; i < 4; ++i) {
+			tmp[i] = faces.get("fore").elems[line][i];
+			faces.get("fore").elems[line][i] = faces.get("left").elems[line][i];
+		}
+		
+		for (int i = 0; i < 4; ++i) {
+			tmp2[i] = faces.get("right").elems[line][i];
+			faces.get("right").elems[line][i] = tmp[i]; //faces.get("fore").elems[line][i];
+		}
+		
+		for (int i = 0; i < 4; ++i) {
+			tmp[i] = faces.get("back").elems[line][i];
+			faces.get("back").elems[line][i] = tmp2[i];
+		}
+		
+		for (int i = 0; i < 4; ++i) {
+			faces.get("left").elems[line][i] = tmp[i];
+		}
+	}
+	
+	public void tleft(int line) {
+		int[] tmp = new int[4];
+		int[] tmp2 = new int[4];
+		
+		for (int i = 0; i < 4; ++i) {
+			tmp[i] = faces.get("fore").elems[line][i];
+			faces.get("fore").elems[line][i] = faces.get("right").elems[line][i];
+		}
+		
+		for (int i = 0; i < 4; ++i) {
+			tmp2[i] = faces.get("left").elems[line][i];
+			faces.get("left").elems[line][i] = tmp[i]; //faces.get("fore").elems[line][i];
+		}
+		
+		for (int i = 0; i < 4; ++i) {
+			tmp[i] = faces.get("back").elems[line][i];
+			faces.get("back").elems[line][i] = tmp2[i];
+		}
+		
+		for (int i = 0; i < 4; ++i) {
+			faces.get("right").elems[line][i] = tmp[i];
+		}
+	}
+	
+	public void tdown(int col) {
+		
+	}
+	
+	public void tup(int col) {
+		
+	}
 }

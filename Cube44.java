@@ -115,10 +115,50 @@ public class Cube44 {
 	}
 	
 	public void tdown(int col) {
+		int[] tmp = new int[4];
+		int[] tmp2 = new int[4];
 		
+		for (int i = 0; i < 4; ++i) {
+			tmp[i] = faces.get("fore").elems[i][col];
+			faces.get("fore").elems[i][col] = faces.get("top").elems[i][col];
+		}
+		
+		for (int i = 0; i < 4; ++i) {
+			tmp2[i] = faces.get("bot").elems[i][col];
+			faces.get("bot").elems[i][col] = tmp[i]; //faces.get("fore").elems[line][i];
+		}
+		
+		for (int i = 0; i < 4; ++i) {
+			tmp[i] = faces.get("back").elems[i][col];
+			faces.get("back").elems[i][col] = tmp2[i];
+		}
+		
+		for (int i = 0; i < 4; ++i) {
+			faces.get("top").elems[i][col] = tmp[i];
+		}
 	}
 	
 	public void tup(int col) {
+		int[] tmp = new int[4];
+		int[] tmp2 = new int[4];
 		
+		for (int i = 0; i < 4; ++i) {
+			tmp[i] = faces.get("fore").elems[i][col];
+			faces.get("fore").elems[i][col] = faces.get("bot").elems[i][col];
+		}
+		
+		for (int i = 0; i < 4; ++i) {
+			tmp2[i] = faces.get("top").elems[i][col];
+			faces.get("top").elems[i][col] = tmp[i]; //faces.get("fore").elems[line][i];
+		}
+		
+		for (int i = 0; i < 4; ++i) {
+			tmp[i] = faces.get("back").elems[i][col];
+			faces.get("back").elems[i][col] = tmp2[i];
+		}
+		
+		for (int i = 0; i < 4; ++i) {
+			faces.get("bot").elems[i][col] = tmp[i];
+		}
 	}
 }

@@ -93,7 +93,7 @@ public class Cube44 {
 		//turn elements of the face 
 		if (line == 0) {
 			faces.get("top").turn(true);
-		} else if (line == 4) {
+		} else if (line == 3) {
 			faces.get("bot").turn(true);
 		}
 	}
@@ -125,7 +125,7 @@ public class Cube44 {
 		//turn elements of the face 
 		if (line == 0) {
 			faces.get("top").turn(false);
-		} else if (line == 4) {
+		} else if (line == 3) {
 			faces.get("bot").turn(false);
 		}
 	}
@@ -155,9 +155,9 @@ public class Cube44 {
 		
 		//turn elements of the face 
 		if (col == 0) {
-			faces.get("right").turn(false);
-		} else if (col == 4) {
 			faces.get("left").turn(true);
+		} else if (col == 3) {
+			faces.get("right").turn(false);
 		}
 	}
 	
@@ -186,9 +186,9 @@ public class Cube44 {
 		
 		//turn elements of the face 
 		if (col == 0) {
-			faces.get("right").turn(true);
-		} else if (col == 4) {
 			faces.get("left").turn(false);
+		} else if (col == 3) {
+			faces.get("right").turn(true);
 		}
 	}
 

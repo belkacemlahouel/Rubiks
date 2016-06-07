@@ -6,7 +6,11 @@ public class Application {
 		System.out.println(cube);
 		cube.tright(3);
 		System.out.println(cube);
+		cube.tdown(0);
+		System.out.println(cube);
 		cube.tdown();
+		System.out.println(cube);
+		cube.tdown(3);
 		System.out.println(cube);
 	}
 	

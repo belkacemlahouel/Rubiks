@@ -66,6 +66,7 @@ public class Cube44 {
 		return str.toString();
 	}
 
+	//turn VERS la droite
 	public void tright(int line) {
 		int[] tmp = new int[4];
 		int[] tmp2 = new int[4];
@@ -88,8 +89,16 @@ public class Cube44 {
 		for (int i = 0; i < 4; ++i) {
 			faces.get("left").elems[line][i] = tmp[i];
 		}
+		
+		//turn elements of the face 
+		if (line == 0) {
+			faces.get("top").turn(true);
+		} else if (line == 4) {
+			faces.get("bot").turn(true);
+		}
 	}
 	
+	//turn VERS la gauche
 	public void tleft(int line) {
 		int[] tmp = new int[4];
 		int[] tmp2 = new int[4];
@@ -111,6 +120,13 @@ public class Cube44 {
 		
 		for (int i = 0; i < 4; ++i) {
 			faces.get("right").elems[line][i] = tmp[i];
+		}
+		
+		//turn elements of the face 
+		if (line == 0) {
+			faces.get("top").turn(false);
+		} else if (line == 4) {
+			faces.get("bot").turn(false);
 		}
 	}
 	
@@ -136,6 +152,13 @@ public class Cube44 {
 		for (int i = 0; i < 4; ++i) {
 			faces.get("top").elems[i][col] = tmp[i];
 		}
+		
+		//turn elements of the face 
+		if (col == 0) {
+			faces.get("right").turn(false);
+		} else if (col == 4) {
+			faces.get("left").turn(true);
+		}
 	}
 	
 	public void tup(int col) {
@@ -160,30 +183,45 @@ public class Cube44 {
 		for (int i = 0; i < 4; ++i) {
 			faces.get("bot").elems[i][col] = tmp[i];
 		}
+		
+		//turn elements of the face 
+		if (col == 0) {
+			faces.get("right").turn(true);
+		} else if (col == 4) {
+			faces.get("left").turn(false);
+		}
 	}
 
 	public void tup() {
 		swapFaces("fore", "bot");
 		swapFaces("bot", "back");
 		swapFaces("back", "top");
+		faces.get("left").turn(false);
+		faces.get("right").turn(true);
 	}
 	
 	public void tdown() {
 		swapFaces("fore", "top");
 		swapFaces("top", "back");
 		swapFaces("back", "bot");
+		faces.get("left").turn(true);
+		faces.get("right").turn(false);
 	}
 	
 	public void tright() {
 		swapFaces("fore", "left");
 		swapFaces("left", "back");
 		swapFaces("back", "right");
+		faces.get("top").turn(false);
+		faces.get("bot").turn(false);
 	}
 	
 	public void tleft() {
 		swapFaces("fore", "right");
 		swapFaces("right", "back");
 		swapFaces("back", "left");
+		faces.get("top").turn(true);
+		faces.get("bot").turn(true);
 	}
 	
 	private void swapFaces(String a, String b) {

@@ -3,14 +3,16 @@ public class Application {
 
 	public static void main(String[] args) {
 		Cube44 cube = new Cube44();
-		System.out.println(cube);
+		//System.out.println(cube);
 		cube.tright(3);
-		System.out.println(cube);
+		//System.out.println(cube);
 		cube.tdown(0);
+		//System.out.println(cube);
+		cube.tdown(3);
+		//System.out.println(cube);
+		cube.tdown(3);
 		System.out.println(cube);
 		cube.tdown();
-		System.out.println(cube);
-		cube.tdown(3);
 		System.out.println(cube);
 	}
 	

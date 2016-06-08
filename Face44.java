@@ -29,21 +29,7 @@ public class Face44 {
 	}
 	
 	public void turn(boolean horaire) {
-		boolean[][] bx = new boolean[4][4];
-		
-		for (int i = 0; i < 4; ++i) {
-			for (int j = 0; j < 4; ++j) {
-				if (bx[i][j])
-					continue;
-				
-				int x = elems[i][j];
-				elems[i][j] = elems[j][i];
-				elems[j][i] = x;
-				
-				bx[i][j] = true;
-				bx[j][i] = true;
-			}
-		}
+		transpose();
 		
 		if (!horaire) {
 			//reverse each column
@@ -66,6 +52,24 @@ public class Face44 {
 				tmp = elems[i][1];
 				elems[i][1] = elems[i][2];
 				elems[i][2] = tmp;
+			}
+		}
+	}
+
+	public void transpose() {
+		boolean[][] bx = new boolean[4][4];
+		
+		for (int i = 0; i < 4; ++i) {
+			for (int j = 0; j < 4; ++j) {
+				if (bx[i][j])
+					continue;
+				
+				int x = elems[i][j];
+				elems[i][j] = elems[j][i];
+				elems[j][i] = x;
+				
+				bx[i][j] = true;
+				bx[j][i] = true;
 			}
 		}
 	}

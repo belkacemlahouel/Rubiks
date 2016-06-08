@@ -145,8 +145,8 @@ public class Cube44 {
 		}
 		
 		for (int i = 0; i < 4; ++i) {
-			tmp[i] = faces.get("back").elems[i][col];
-			faces.get("back").elems[i][col] = tmp2[i];
+			tmp[i] = faces.get("back").elems[i][3-col];
+			faces.get("back").elems[i][3-col] = tmp2[i];
 		}
 		
 		for (int i = 0; i < 4; ++i) {
@@ -176,8 +176,8 @@ public class Cube44 {
 		}
 		
 		for (int i = 0; i < 4; ++i) {
-			tmp[i] = faces.get("back").elems[i][col];
-			faces.get("back").elems[i][col] = tmp2[i];
+			tmp[i] = faces.get("back").elems[i][3-col];
+			faces.get("back").elems[i][3-col] = tmp2[i];
 		}
 		
 		for (int i = 0; i < 4; ++i) {
@@ -193,35 +193,43 @@ public class Cube44 {
 	}
 
 	public void tup() {
+		faces.get("back").transpose();
 		swapFaces("fore", "bot");
 		swapFaces("bot", "back");
 		swapFaces("back", "top");
 		faces.get("left").turn(false);
 		faces.get("right").turn(true);
+		faces.get("back").transpose();
 	}
 	
 	public void tdown() {
+		faces.get("back").transpose();
 		swapFaces("fore", "top");
 		swapFaces("top", "back");
 		swapFaces("back", "bot");
 		faces.get("left").turn(true);
 		faces.get("right").turn(false);
+		faces.get("back").transpose();
 	}
 	
 	public void tright() {
+		faces.get("back").transpose();
 		swapFaces("fore", "left");
 		swapFaces("left", "back");
 		swapFaces("back", "right");
 		faces.get("top").turn(false);
 		faces.get("bot").turn(false);
+		faces.get("back").transpose();
 	}
 	
 	public void tleft() {
+		faces.get("back").transpose();
 		swapFaces("fore", "right");
 		swapFaces("right", "back");
 		swapFaces("back", "left");
 		faces.get("top").turn(true);
 		faces.get("bot").turn(true);
+		faces.get("back").transpose();
 	}
 	
 	private void swapFaces(String a, String b) {

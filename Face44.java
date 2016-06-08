@@ -73,4 +73,37 @@ public class Face44 {
 			}
 		}
 	}
+	
+	public void transposeLines() {
+		for (int i = 0; i < 4; ++i) {
+			//4th with 1st
+			int swp = elems[0][i];
+			elems[0][i] = elems[3][i];
+			elems[3][i] = swp;
+			
+			//2nd with 3rd
+			swp = elems[2][i];
+			elems[2][i] = elems[1][i];
+			elems[1][i] = swp;
+		}
+	}
+	
+	public void transposeColumns() {
+		for (int i = 0; i < 4; ++i) {
+			//4th with 1st
+			int swp = elems[i][0];
+			elems[i][0] = elems[i][3];
+			elems[i][3] = swp;
+			
+			//2nd with 3rd
+			swp = elems[i][2];
+			elems[i][2] = elems[i][1];
+			elems[i][1] = swp;
+		}
+	}
+	
+	public void transposeLC() {
+		transposeColumns();
+		transposeLines();
+	}
 }

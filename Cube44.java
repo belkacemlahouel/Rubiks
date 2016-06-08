@@ -193,43 +193,39 @@ public class Cube44 {
 	}
 
 	public void tup() {
-		faces.get("back").transpose();
+		faces.get("back").transposeLC();
 		swapFaces("fore", "bot");
 		swapFaces("bot", "back");
 		swapFaces("back", "top");
 		faces.get("left").turn(false);
 		faces.get("right").turn(true);
-		faces.get("back").transpose();
+		faces.get("back").transposeLC();
 	}
 	
 	public void tdown() {
-		faces.get("back").transpose();
+		faces.get("back").transposeLC();
 		swapFaces("fore", "top");
 		swapFaces("top", "back");
 		swapFaces("back", "bot");
 		faces.get("left").turn(true);
 		faces.get("right").turn(false);
-		faces.get("back").transpose();
+		faces.get("back").transposeLC();
 	}
 	
 	public void tright() {
-		faces.get("back").transpose();
 		swapFaces("fore", "left");
 		swapFaces("left", "back");
 		swapFaces("back", "right");
 		faces.get("top").turn(false);
-		faces.get("bot").turn(false);
-		faces.get("back").transpose();
+		faces.get("bot").turn(true);
 	}
 	
 	public void tleft() {
-		faces.get("back").transpose();
 		swapFaces("fore", "right");
 		swapFaces("right", "back");
 		swapFaces("back", "left");
-		faces.get("top").turn(true);
+		faces.get("top").turn(false);
 		faces.get("bot").turn(true);
-		faces.get("back").transpose();
 	}
 	
 	private void swapFaces(String a, String b) {

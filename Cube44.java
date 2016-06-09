@@ -335,24 +335,34 @@ public class Cube44 {
 	}
 	
 	public void executeSeq(String seq) {
-		char c = 'a';
 		int i = 0;
 		
 		while (i < seq.length()) {
 			String move = "";
-			boolean new_move = false;
+			boolean _m = false;
 			
-			c = seq.charAt(i);
-			move += c;
-			++i;
+			while (i < seq.length() && seq.charAt(i) == ' ')
+				++i;
 			
-			while (i < seq.length() && c != ' ' && (new_move)) {
-				c = seq.charAt(i++);
-				if (c == ' ') new_move = false;
-				while (c == ' ') c = seq.charAt(i++);
-				move += c;
-				
-				new_move = new_move || BASIC_MOVES.contains(c) || c == 'M';
+			if (i < seq.length() && (BASIC_MOVES.contains(seq.charAt(i)) || seq.charAt(i) == 'M')) {
+				_m = seq.charAt(i) == 'M';
+				move += seq.charAt(i);
+				++i;
+			}
+			
+			while (i < seq.length() && seq.charAt(i) != ' ' && !BASIC_MOVES.contains(seq.charAt(i))) {
+				move += seq.charAt(i);
+				++i;
+			}
+			
+			if (_m && i < seq.length() && seq.charAt(i) != ' ' && M_MOVES.contains(seq.charAt(i))) {
+				move += seq.charAt(i);
+				++i;
+			}
+			
+			if (_m && i < seq.length() && seq.charAt(i) != ' ' && !BASIC_MOVES.contains(seq.charAt(i))) {
+				move += seq.charAt(i);
+				++i;
 			}
 			
 			System.err.println(move);
@@ -463,7 +473,7 @@ public class Cube44 {
 			MDinv();
 			break;
 		default:
-			System.err.println("Move not recognized.");
+			System.err.println("Move not recognized: " + move);
 		}
 	}
 }

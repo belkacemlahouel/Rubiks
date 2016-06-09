@@ -5,7 +5,9 @@ public class Application {
 		
 		Cube44 cube = new Cube44();
 		System.out.println(cube);
-		cube.executeSeq("F2 MU F2");
+		//cube.executeSeq("F2MUF2");
+		//cube.executeSeq("L'U2LUL'ULRU2 R' U' R U' R'");
+		cube.executeSeq("F'MU'F2MD2F2MUMD'F");
 		System.out.println(cube);
 	}
 	

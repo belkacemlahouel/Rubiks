@@ -24,7 +24,7 @@ public class Application {
 	public static void testCube() {
 		Cube44 cube = new Cube44();
 		System.out.println(cube);
-		cube.tright(3);
+		cube.Finv();
 		System.out.println(cube);
 		cube.tdown(0);
 		System.out.println(cube);

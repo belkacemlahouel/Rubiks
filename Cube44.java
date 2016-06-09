@@ -32,10 +32,18 @@ public class Cube44 {
 		faces.put("right", new Face44(3));
 		faces.put("back", new Face44(4)); //background
 		faces.put("top", new Face44(5));
-		faces.put("bot", new Face44(6));
+		faces.put("bot", new Face44(0));
 		
+		//ansi color, 31m = red, 31;1m = bright red
+		//install: https://marketplace.eclipse.org/content/ansi-escape-console
+		//drag and drop in eclipse
 		rpz = new String[6];
-		rpz[0] = "\033[31m █";
+		rpz[0] = "\033[31;1m █"; //red
+		rpz[1] = "\033[34;1m █"; //blue
+		rpz[2] = "\033[32;1m █"; //green
+		rpz[3] = "\033[0;36m █"; //cyan
+		rpz[4] = "\033[33;1m █"; //yellow
+		rpz[5] = "\033[35;1m █"; //pink
 	}
 	
 	public Cube44(Cube44 copy) {
@@ -54,9 +62,9 @@ public class Cube44 {
 		
 		//top
 		for (int i = 0; i < 4; ++i) {
-			str.append("\t      ");
+			str.append("\t          ");
 			for (int j = 0; j < 4; ++j) {
-				str.append(faces.get("top").elems[i][j]);
+				str.append(rpz[faces.get("top").elems[i][j]]);
 			}
 			str.append("\n");
 		}
@@ -66,22 +74,22 @@ public class Cube44 {
 		for (int i = 0; i < 4; ++i) {
 			str.append("\t");
 			for (int j = 0; j < 4; ++j)
-				str.append(faces.get("left").elems[i][j]);
+				str.append(rpz[faces.get("left").elems[i][j]]);
 			
 			str.append("  ");
 			
 			for (int j = 0; j < 4; ++j)
-				str.append(faces.get("fore").elems[i][j]);
+				str.append(rpz[faces.get("fore").elems[i][j]]);
 			
 			str.append("  ");
 			
 			for (int j = 0; j < 4; ++j)
-				str.append(faces.get("right").elems[i][j]);
+				str.append(rpz[faces.get("right").elems[i][j]]);
 			
 			str.append("  ");
 			
 			for (int j = 0; j < 4; ++j)
-				str.append(faces.get("back").elems[i][j]);
+				str.append(rpz[faces.get("back").elems[i][j]]);
 			
 			str.append("\n");
 		}
@@ -89,9 +97,9 @@ public class Cube44 {
 		
 		//bot
 		for (int i = 0; i < 4; ++i) {
-			str.append("\t      ");
+			str.append("\t          ");
 			for (int j = 0; j < 4; ++j) {
-				str.append(faces.get("bot").elems[i][j]);
+				str.append(rpz[faces.get("bot").elems[i][j]]);
 			}
 			str.append("\n");
 		}

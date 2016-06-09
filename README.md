@@ -40,11 +40,11 @@ _With Eclipse IDE:_
 6.  If you want to update with the Github version:
     -    git pull github master    
 
-Java 8 (JDK 1.8) used.
+Java 8 (JDK 1.8) used. Need Eclipse ANSI Colors plug-in.
 
 ## PUSHING RULES  
 1. Do not push in master for no good reason.
 2. Work on you own branch.
 3. Only push source code in Github (no executables!).
-4. Try to document your methods (if not selfexplained).
+4. Try to document your methods (if not self-explained).
 

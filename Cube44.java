@@ -3,6 +3,7 @@ import java.util.HashMap;
 public class Cube44 {
 
 	public HashMap<String, Face44> faces;
+	public String[] rpz;
 	
 	public Cube44() {
 		faces = new HashMap<>();
@@ -12,6 +13,9 @@ public class Cube44 {
 		faces.put("back", new Face44(4)); //background
 		faces.put("top", new Face44(5));
 		faces.put("bot", new Face44(6));
+		
+		rpz = new String[6];
+		rpz[0] = "\033[31m █";
 	}
 	
 	public Cube44(Cube44 copy) {
@@ -259,8 +263,7 @@ public class Cube44 {
 		faces.replace(b, face);
 	}
 	
-	@SuppressWarnings("unused")
-	private boolean equals(Cube44 o) {
+	public boolean equals(Cube44 o) {
 		if (o.faces.get("left").equals(faces.get("left")) &&
 				o.faces.get("right").equals(faces.get("right")) &&
 				o.faces.get("fore").equals(faces.get("fore")) &&
@@ -270,5 +273,17 @@ public class Cube44 {
 			return true;
 		
 		return false;
+	}
+	
+	public void execute(String seq) {
+		char c = 'a';
+		
+		for (int i = 0; i < seq.length(); ++i) {
+			c = seq.charAt(i);
+			
+			if (c == ' ') continue;
+			
+			
+		}
 	}
 }

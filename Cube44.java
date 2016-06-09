@@ -248,4 +248,37 @@ public class Cube44 {
 		faces.replace(a, faces.get(b));
 		faces.replace(b, face);
 	}
+	
+	public void R(){tup(3);}
+	public void R2(){tup(3); tup(3);}
+	public void Rinv(){tdown(3);}
+	public void L(){tdown(0);}
+	public void L2(){tdown(0); tdown(0);}
+	public void Linv(){tup(0);}
+	public void U(){tleft(0);}
+	public void U2(){tleft(0); tleft(0);}
+	public void Uinv(){tright(0);}
+	public void D(){tright(3);}
+	public void D2(){tright(3); tright(3);}
+	public void Dinv(){tleft(3);}
+	public void F(){tright(); tup(3); tleft();}
+	public void F2(){tright(); tup(3); tup(3); tleft();}
+	public void Finv(){tright(); tdown(3); tleft();}
+	public void B(){tleft(); tup(3); tright();}
+	public void B2(){tleft(); tup(3); tup(3); tright();}
+	public void Binv(){tleft(); tdown(3); tright();}
+	public void MU(){tleft(1);}
+	public void MU2(){tleft(1); tleft(1);}
+	public void MUinv(){tright(1);}
+	public void ML(){tdown(1);}
+	public void ML2(){tdown(1); tdown(1);}
+	public void MLinv(){tup(1);}
+	public void MR(){tup(2);}
+	public void MR2(){tup(2); tup(2);}
+	public void MRinv(){tdown(2);}
+	public void MD(){tright(2);}
+	public void MD2(){tright(2); tright(2);}
+	public void MDinv(){tleft(2);}
+	
+	
 }

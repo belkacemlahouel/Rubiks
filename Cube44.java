@@ -14,8 +14,14 @@ public class Cube44 {
 		faces.put("top", new Face44(5));
 		faces.put("bot", new Face44(6));
 		
-		rpz = new String[6];
+		rpz = new String[7];
 		rpz[0] = "\033[31m █";
+		rpz[1] = "\033[34m █";
+		rpz[2] = "\033[32m █";
+		rpz[3] = "\033[35m █";
+		rpz[4] = "\033[36m █";
+		rpz[5] = "\033[37m █";
+		rpz[6] = "\033[0m "; // reset to black
 	}
 	
 	public Cube44(Cube44 copy) {
@@ -36,7 +42,7 @@ public class Cube44 {
 		for (int i = 0; i < 4; ++i) {
 			str.append("\t      ");
 			for (int j = 0; j < 4; ++j) {
-				str.append(faces.get("top").elems[i][j]);
+				str.append(rpz[faces.get("top").elems[i][j]]);
 			}
 			str.append("\n");
 		}
@@ -46,22 +52,22 @@ public class Cube44 {
 		for (int i = 0; i < 4; ++i) {
 			str.append("\t");
 			for (int j = 0; j < 4; ++j)
-				str.append(faces.get("left").elems[i][j]);
+				str.append(rpz[faces.get("left").elems[i][j]]);
 			
 			str.append("  ");
 			
 			for (int j = 0; j < 4; ++j)
-				str.append(faces.get("fore").elems[i][j]);
+				str.append(rpz[faces.get("fore").elems[i][j]]);
 			
 			str.append("  ");
 			
 			for (int j = 0; j < 4; ++j)
-				str.append(faces.get("right").elems[i][j]);
+				str.append(rpz[faces.get("right").elems[i][j]]);
 			
 			str.append("  ");
 			
 			for (int j = 0; j < 4; ++j)
-				str.append(faces.get("back").elems[i][j]);
+				str.append(rpz[faces.get("back").elems[i][j]]);
 			
 			str.append("\n");
 		}
@@ -71,7 +77,7 @@ public class Cube44 {
 		for (int i = 0; i < 4; ++i) {
 			str.append("\t      ");
 			for (int j = 0; j < 4; ++j) {
-				str.append(faces.get("bot").elems[i][j]);
+				str.append(rpz[faces.get("bot").elems[i][j]]);
 			}
 			str.append("\n");
 		}

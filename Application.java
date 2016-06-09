@@ -13,6 +13,7 @@ public class Application {
 		cube.tdown(3);
 		System.out.println(cube);
 		cube.tright();
+		System.out.println(cube);
 		cube.tleft();
 		System.out.println(cube);
 	}

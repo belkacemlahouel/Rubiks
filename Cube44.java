@@ -239,8 +239,8 @@ public class Cube44 {
 		swapFaces("fore", "right");
 		swapFaces("right", "back");
 		swapFaces("back", "left");
-		faces.get("top").turn(false);
-		faces.get("bot").turn(true);
+		faces.get("top").turn(true);
+		faces.get("bot").turn(false);
 	}
 	
 	private void swapFaces(String a, String b) {

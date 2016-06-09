@@ -4,27 +4,8 @@ public class Application {
 	public static void main(String[] args) {
 		Cube44 cube = new Cube44();
 		System.out.println(cube);
-		cube.tright(3);
+		cube.Finv();
 		System.out.println(cube);
-		cube.tdown(0);
-		System.out.println(cube);
-		cube.tdown(3);
-		System.out.println(cube);
-		cube.tdown(3);
-		System.out.println(cube);
-		cube.tdown(0);
-		cube.tup(0);
-		System.out.println(cube);
-		
-		System.out.println("\033[0m BLACK");
-        System.out.println("\033[31m █");
-        System.out.println("\033[32m █");
-        System.out.println("\033[33m YELLOW");
-        System.out.println("\033[34m BLUE");
-        System.out.println("\033[35m MAGENTA");
-        System.out.println("\033[36m CYAN");
-        System.out.println("\033[37m WHITE");
-        System.out.println("\033[0m");
 	}
 	
 	public static void testFace() {

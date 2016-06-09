@@ -150,8 +150,8 @@ public class Cube44 {
 		}
 		
 		for (int i = 0; i < 4; ++i) {
-			tmp[i] = faces.get("back").elems[i][3-col];
-			faces.get("back").elems[i][3-col] = tmp2[i];
+			tmp[i] = faces.get("back").elems[3-i][3-col];
+			faces.get("back").elems[3-i][3-col] = tmp2[i];
 		}
 		
 		for (int i = 0; i < 4; ++i) {
@@ -183,8 +183,8 @@ public class Cube44 {
 		}
 		
 		for (int i = 0; i < 4; ++i) {
-			tmp[i] = faces.get("back").elems[i][3-col];
-			faces.get("back").elems[i][3-col] = tmp2[i];
+			tmp[i] = faces.get("back").elems[3-i][3-col];
+			faces.get("back").elems[3-i][3-col] = tmp2[i];
 		}
 		
 		for (int i = 0; i < 4; ++i) {

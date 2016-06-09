@@ -12,6 +12,11 @@ public class Application {
 		System.out.println(cube);
 		cube.tdown(3);
 		System.out.println(cube);
+		cube.tdown(0);
+		cube.tdown(0);
+		cube.tdown(0);
+		cube.tdown(0);
+		System.out.println(cube);
 		cube.tright();
 		System.out.println(cube);
 		cube.tleft();

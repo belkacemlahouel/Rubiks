@@ -3,6 +3,16 @@ public class Face44 {
 
 	public int[][] elems;
 	
+	public Face44(Face44 copy) {
+		elems = new int[4][4]; //line, col
+		
+		for (int i = 0; i < 4; ++i) {
+			for (int j = 0; j < 4; ++j) {
+				elems[i][j] = copy.elems[i][j];
+			}
+		}
+	}
+	
 	public Face44(int color) {
 		elems = new int[4][4]; //line, col
 		
@@ -11,6 +21,17 @@ public class Face44 {
 				elems[i][j] = color;
 			}
 		}
+	}
+	
+	public boolean equals(Face44 o) {
+		for (int i = 0; i < 4; ++i) {
+			for (int j = 0; j < 4; ++j) {
+				if (elems[i][j] != o.elems[i][j])
+					return false;
+			}
+		}
+		
+		return true;
 	}
 	
 	@Override

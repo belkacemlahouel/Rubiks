@@ -14,6 +14,16 @@ public class Cube44 {
 		faces.put("bot", new Face44(6));
 	}
 	
+	public Cube44(Cube44 copy) {
+		faces = new HashMap<>();
+		faces.put("left", new Face44(copy.faces.get("left")));
+		faces.put("fore", new Face44(copy.faces.get("fore"))); //foreground
+		faces.put("right", new Face44(copy.faces.get("right")));
+		faces.put("back", new Face44(copy.faces.get("back"))); //background
+		faces.put("top", new Face44(copy.faces.get("top")));
+		faces.put("bot", new Face44(copy.faces.get("bot")));
+	}
+	
 	@Override
 	public String toString() {
 		StringBuilder str = new StringBuilder("Cube44:\n");
@@ -247,5 +257,18 @@ public class Cube44 {
 		Face44 face = faces.get(a);
 		faces.replace(a, faces.get(b));
 		faces.replace(b, face);
+	}
+	
+	@SuppressWarnings("unused")
+	private boolean equals(Cube44 o) {
+		if (o.faces.get("left").equals(faces.get("left")) &&
+				o.faces.get("right").equals(faces.get("right")) &&
+				o.faces.get("fore").equals(faces.get("fore")) &&
+				o.faces.get("back").equals(faces.get("back")) &&
+				o.faces.get("top").equals(faces.get("top")) &&
+				o.faces.get("bot").equals(faces.get("bot")))
+			return true;
+		
+		return false;
 	}
 }

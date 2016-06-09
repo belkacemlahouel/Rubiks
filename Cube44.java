@@ -1,6 +1,5 @@
 import java.util.HashMap;
 
-
 public class Cube44 {
 
 	public HashMap<String, Face44> faces;
@@ -68,6 +67,8 @@ public class Cube44 {
 
 	//turn VERS la droite
 	public void tright(int line) {
+		System.out.println("tright " + line);
+		
 		int[] tmp = new int[4];
 		int[] tmp2 = new int[4];
 		
@@ -100,6 +101,8 @@ public class Cube44 {
 	
 	//turn VERS la gauche
 	public void tleft(int line) {
+		System.out.println("tleft " + line);
+		
 		int[] tmp = new int[4];
 		int[] tmp2 = new int[4];
 		
@@ -131,6 +134,8 @@ public class Cube44 {
 	}
 	
 	public void tdown(int col) {
+		System.out.println("tdown " + col);
+		
 		int[] tmp = new int[4];
 		int[] tmp2 = new int[4];
 		
@@ -162,6 +167,8 @@ public class Cube44 {
 	}
 	
 	public void tup(int col) {
+		System.out.println("tup " + col);
+		
 		int[] tmp = new int[4];
 		int[] tmp2 = new int[4];
 		
@@ -193,6 +200,8 @@ public class Cube44 {
 	}
 
 	public void tup() {
+		System.out.println("tup");
+		
 		faces.get("back").transposeLC();
 		swapFaces("fore", "bot");
 		swapFaces("bot", "back");
@@ -203,6 +212,8 @@ public class Cube44 {
 	}
 	
 	public void tdown() {
+		System.out.println("tdown");
+		
 		faces.get("back").transposeLC();
 		swapFaces("fore", "top");
 		swapFaces("top", "back");
@@ -213,6 +224,8 @@ public class Cube44 {
 	}
 	
 	public void tright() {
+		System.out.println("tright");
+		
 		swapFaces("fore", "left");
 		swapFaces("left", "back");
 		swapFaces("back", "right");
@@ -221,6 +234,8 @@ public class Cube44 {
 	}
 	
 	public void tleft() {
+		System.out.println("tleft");
+		
 		swapFaces("fore", "right");
 		swapFaces("right", "back");
 		swapFaces("back", "left");

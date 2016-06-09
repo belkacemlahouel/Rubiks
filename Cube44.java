@@ -1,6 +1,26 @@
 import java.util.HashMap;
+import java.util.HashSet;
 
 public class Cube44 {
+	
+	public static final HashSet<Character> BASIC_MOVES, M_MOVES;
+	
+	static {
+		BASIC_MOVES = new HashSet<Character>();
+		BASIC_MOVES.add('R');
+		BASIC_MOVES.add('L');
+		BASIC_MOVES.add('U');
+		BASIC_MOVES.add('D');
+		BASIC_MOVES.add('F');
+		BASIC_MOVES.add('B');
+		BASIC_MOVES.add('M');
+		
+		M_MOVES = new HashSet<Character>();
+		M_MOVES.add('U');
+		M_MOVES.add('L');
+		M_MOVES.add('R');
+		M_MOVES.add('D');
+	}
 
 	public HashMap<String, Face44> faces;
 	public String[] rpz;
@@ -306,15 +326,136 @@ public class Cube44 {
 		return false;
 	}
 	
-	public void execute(String seq) {
+	public void executeSeq(String seq) {
 		char c = 'a';
+		int i = 0;
 		
-		for (int i = 0; i < seq.length(); ++i) {
+		while (i < seq.length()) {
+			String move = "";
+			boolean new_move = false;
+			
 			c = seq.charAt(i);
+			move += c;
+			++i;
 			
-			if (c == ' ') continue;
+			while (i < seq.length() && c != ' ' && (new_move)) {
+				c = seq.charAt(i++);
+				if (c == ' ') new_move = false;
+				while (c == ' ') c = seq.charAt(i++);
+				move += c;
+				
+				new_move = new_move || BASIC_MOVES.contains(c) || c == 'M';
+			}
 			
+			System.err.println(move);
 			
+			executeMove(move);
+		}
+	}
+	
+	public void executeMove(String move) {
+		switch(move) {
+		case "R":
+			R();
+			break;
+		case "R2":
+			R2();
+			break;
+		case "R'":
+			Rinv();
+			break;
+			
+		case "L":
+			L();
+			break;
+		case "L2":
+			L2();
+			break;
+		case "L'":
+			Linv();
+			break;
+			
+		case "U":
+			U();
+			break;
+		case "U2":
+			U2();
+			break;
+		case "U'":
+			Uinv();
+			break;
+			
+		case "D":
+			D();
+			break;
+		case "D2":
+			D2();
+			break;
+		case "D'":
+			Dinv();
+			break;
+			
+		case "F":
+			F();
+			break;
+		case "F2":
+			F2();
+			break;
+		case "F'":
+			Finv();
+			break;
+			
+		case "B":
+			B();
+			break;
+		case "B2":
+			B2();
+			break;
+		case "B'":
+			Binv();
+			break;
+			
+		case "MU":
+			MU();
+			break;
+		case "MU2":
+			MU2();
+			break;
+		case "MU'":
+			MUinv();
+			break;
+			
+		case "ML":
+			ML();
+			break;
+		case "ML2":
+			ML2();
+			break;
+		case "ML'":
+			MLinv();
+			break;
+			
+		case "MR":
+			MR();
+			break;
+		case "MR2":
+			MR2();
+			break;
+		case "MR'":
+			MRinv();
+			break;
+			
+		case "MD":
+			MD();
+			break;
+		case "MD2":
+			MD2();
+			break;
+		case "MD'":
+			MDinv();
+			break;
+		default:
+			System.err.println("Move not recognized.");
 		}
 	}
 }

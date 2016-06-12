@@ -34,6 +34,17 @@ public class Face44 {
 		return true;
 	}
 	
+	public boolean isUnicolor(){
+		int tmp = elems[0][0];
+		for (int i = 0; i < 4; ++i) {
+			for (int j = 0; j < 4; ++j) {
+				if (elems[i][j] != tmp)
+					return false;
+			}
+		}
+		return true;
+	}
+	
 	@Override
 	public String toString() {
 		StringBuilder str = new StringBuilder("Face44:\n");

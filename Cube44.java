@@ -334,6 +334,13 @@ public class Cube44 {
 		return false;
 	}
 	
+	public boolean isSolved(){
+		for(Face44 face:faces.values()){
+			if(!face.isUnicolor()) return false;
+		}
+		return true;
+	}
+	
 	public void executeSeq(String seq) {
 		int i = 0;
 		

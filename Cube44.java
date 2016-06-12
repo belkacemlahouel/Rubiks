@@ -321,6 +321,12 @@ public class Cube44 {
 	public void MD(){tright(2);}
 	public void MD2(){tright(2); tright(2);}
 	public void MDinv(){tleft(2);}
+	public void XX(){tup();} //rotation du cube selon l'axe x
+	public void XXinv(){tdown();} //rotation inverse du cube selon l'axe x
+	public void YY(){tleft();} //rotation du cube selon l'axe x
+	public void YYinv(){tright();} //rotation inverse du cube selon l'axe x
+	public void ZZ(){tdown(); tright(); tup();} //rotation du cube selon l'axe x
+	public void ZZinv(){tdown(); tleft(); tup();} //rotation inverse du cube selon l'axe x
 	
 	public boolean equals(Cube44 o) {
 		if (o.faces.get("left").equals(faces.get("left")) &&

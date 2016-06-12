@@ -6,14 +6,12 @@ public class Application {
 		Cube44 cube = new Cube44();
 		System.out.println(cube);
 		System.out.println(cube.isSolved());
+		cube.ZZinv();
+		System.out.println(cube);
 		//cube.executeSeq("F2MUF2");
 		//cube.executeSeq("L'U2LUL'ULRU2 R' U' R U' R'");
-		cube.executeSeq("F'MU'F2MD2F2MUMD'F");
-		System.out.println(cube);
-		System.out.println(cube.isSolved());
-		cube.executeSeq("F'MDMU'F2MD2F2MUF");
-		System.out.println(cube);
-		System.out.println(cube.isSolved());
+		//cube.executeSeq("F'MU'F2MD2F2MUMD'F");
+		//System.out.println(cube);
 	}
 	
 	public static void testColors() {

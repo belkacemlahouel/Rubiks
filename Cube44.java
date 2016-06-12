@@ -340,6 +340,15 @@ public class Cube44 {
 		return false;
 	}
 	
+	//retourne la somme du nombre d'éléments de même couleur maximale de chaque faces
+	public int valeur1(){
+		int res = 0;
+		for(Face44 face :faces.values()){
+			res += face.valeur1();
+		}
+		return res;
+	}
+	
 	public boolean isSolved(){
 		for(Face44 face:faces.values()){
 			if(!face.isUnicolor()) return false;

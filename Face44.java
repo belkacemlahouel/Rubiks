@@ -1,3 +1,4 @@
+import java.util.HashMap;
 
 public class Face44 {
 
@@ -32,6 +33,26 @@ public class Face44 {
 		}
 		
 		return true;
+	}
+	
+	public int valeur1(){
+		int max_value = 0;
+		HashMap<Integer,Integer> res = new HashMap<Integer,Integer>();
+		res.put(0, 0);
+		res.put(1, 0);
+		res.put(2, 0);
+		res.put(3, 0);
+		res.put(4, 0);
+		res.put(5, 0);
+		for (int i = 0; i < 4; ++i) {
+			for (int j = 0; j < 4; ++j) {
+				res.replace(elems[i][j], res.get(elems[i][j] ) + 1);
+			}
+		}
+		for(int val: res.values()){
+			if(max_value < val) max_value = val;
+		}
+		return max_value;
 	}
 	
 	public boolean isUnicolor(){

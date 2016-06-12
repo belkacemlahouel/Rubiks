@@ -8,6 +8,10 @@ public class Application {
 		System.out.println(cube.isSolved());
 		cube.ZZinv();
 		System.out.println(cube);
+		System.out.println(cube.valeur1());
+		cube.F();
+		System.out.println(cube.valeur1());
+		
 		//cube.executeSeq("F2MUF2");
 		//cube.executeSeq("L'U2LUL'ULRU2 R' U' R U' R'");
 		//cube.executeSeq("F'MU'F2MD2F2MUMD'F");

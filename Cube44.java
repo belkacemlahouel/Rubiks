@@ -397,12 +397,12 @@ public class Cube44 {
 				++i;
 			}
 			
-			if (_m && i < seq.length() && seq.charAt(i) != ' ' && !BASIC_MOVES.contains(seq.charAt(i))) {
+			if (_m && i < seq.length() && seq.charAt(i) != ' ' && !BASIC_MOVES.contains(seq.charAt(i)) && seq.charAt(i) != 'M') {
 				move += seq.charAt(i);
 				++i;
 			}
 			
-			//System.err.println(move);
+			System.err.println(move);
 			
 			executeMove(move);
 		}

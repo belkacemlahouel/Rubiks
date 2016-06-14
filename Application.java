@@ -3,7 +3,8 @@ public class Application {
 
 	public static void main(String[] args) {
 
-		testShuffle();
+		//testShuffle();
+		testParseSeq();
 	}
 	
 	public static void testShuffle() {

@@ -13,7 +13,9 @@ public class Cube44 {
 		BASIC_MOVES.add('D');
 		BASIC_MOVES.add('F');
 		BASIC_MOVES.add('B');
-		BASIC_MOVES.add('M');
+		BASIC_MOVES.add('x');
+		BASIC_MOVES.add('y');
+		BASIC_MOVES.add('z');
 		
 		M_MOVES = new HashSet<Character>();
 		M_MOVES.add('U');
@@ -109,8 +111,6 @@ public class Cube44 {
 
 	//turn VERS la droite
 	public void tright(int line) {
-		System.out.println("tright " + line);
-		
 		int[] tmp = new int[4];
 		int[] tmp2 = new int[4];
 		
@@ -135,7 +135,7 @@ public class Cube44 {
 		
 		//turn elements of the face 
 		if (line == 0) {
-			faces.get("top").turn(true);
+			faces.get("top").turn(false);
 		} else if (line == 3) {
 			faces.get("bot").turn(true);
 		}
@@ -143,8 +143,6 @@ public class Cube44 {
 	
 	//turn VERS la gauche
 	public void tleft(int line) {
-		System.out.println("tleft " + line);
-		
 		int[] tmp = new int[4];
 		int[] tmp2 = new int[4];
 		
@@ -169,14 +167,13 @@ public class Cube44 {
 		
 		//turn elements of the face 
 		if (line == 0) {
-			faces.get("top").turn(false);
+			faces.get("top").turn(true);
 		} else if (line == 3) {
 			faces.get("bot").turn(false);
 		}
 	}
 	
 	public void tdown(int col) {
-		System.out.println("tdown " + col);
 		
 		int[] tmp = new int[4];
 		int[] tmp2 = new int[4];
@@ -209,7 +206,6 @@ public class Cube44 {
 	}
 	
 	public void tup(int col) {
-		System.out.println("tup " + col);
 		
 		int[] tmp = new int[4];
 		int[] tmp2 = new int[4];
@@ -242,7 +238,6 @@ public class Cube44 {
 	}
 
 	public void tup() {
-		System.out.println("tup");
 		
 		faces.get("back").transposeLC();
 		swapFaces("fore", "bot");
@@ -254,7 +249,6 @@ public class Cube44 {
 	}
 	
 	public void tdown() {
-		System.out.println("tdown");
 		
 		faces.get("back").transposeLC();
 		swapFaces("fore", "top");
@@ -266,7 +260,6 @@ public class Cube44 {
 	}
 	
 	public void tright() {
-		System.out.println("tright");
 		
 		swapFaces("fore", "left");
 		swapFaces("left", "back");
@@ -276,7 +269,6 @@ public class Cube44 {
 	}
 	
 	public void tleft() {
-		System.out.println("tleft");
 		
 		swapFaces("fore", "right");
 		swapFaces("right", "back");
@@ -387,7 +379,7 @@ public class Cube44 {
 				++i;
 			}
 			
-			System.err.println(move);
+			//System.err.println(move);
 			
 			executeMove(move);
 		}
@@ -493,6 +485,25 @@ public class Cube44 {
 			break;
 		case "MD'":
 			MDinv();
+			break;
+
+		case "x":
+			XX();
+			break;
+		case "x'":
+			XXinv();
+			break;
+		case "y":
+			YY();
+			break;
+		case "y'":
+			YYinv();
+			break;
+		case "z":
+			ZZ();
+			break;
+		case "z'":
+			ZZinv();
 			break;
 		default:
 			System.err.println("Move not recognized: " + move);

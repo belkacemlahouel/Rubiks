@@ -156,7 +156,7 @@ public class Cube44 {
 		
 		//turn elements of the face 
 		if (line == 0) {
-			faces.get("top").turn(true);
+			faces.get("top").turn(false);
 		} else if (line == 3) {
 			faces.get("bot").turn(true);
 		}
@@ -190,7 +190,7 @@ public class Cube44 {
 		
 		//turn elements of the face 
 		if (line == 0) {
-			faces.get("top").turn(false);
+			faces.get("top").turn(true);
 		} else if (line == 3) {
 			faces.get("bot").turn(false);
 		}

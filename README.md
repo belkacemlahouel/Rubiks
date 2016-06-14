@@ -30,8 +30,8 @@ _With Eclipse IDE:_
     -    git init
     -    git remote add github https://github.com/belkacemlahouel/Rubiks
     -    git pull github master
-    -    git br name.versionnumber.module // git branch
-    -    git co name.versionnumber.module // git checkout
+    -    git br branch_name // git branch
+    -    git co branch_name // git checkout
     -    Go to Eclipse, and refresh the project.
 4.  Work!  
 5.  Push to the Github repository once it's good!  

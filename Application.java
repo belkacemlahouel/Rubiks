@@ -3,7 +3,14 @@ public class Application {
 
 	public static void main(String[] args) {
 		
-		testParseSeq();
+		testShuffle();
+	}
+	
+	public static void testShuffle() {
+		Cube44 cube = new Cube44();
+		System.out.println(cube);
+		cube.shuffle();
+		System.out.println(cube);
 	}
 	
 	public static void testParseSeq() {

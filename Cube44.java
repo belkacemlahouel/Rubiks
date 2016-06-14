@@ -1,9 +1,27 @@
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Random;
 
 public class Cube44 {
 	
 	public static final HashSet<Character> BASIC_MOVES, M_MOVES;
+	public static final String[] MOVES = {
+		//Basic moves
+		"R", "R2", "R'",
+		"L", "L2", "L'",
+		"U", "U2", "U'",
+		"D", "D2", "D'",
+		"F", "F2", "F'",
+		"B", "B2", "B'",
+		//x, y, z
+		"x", "x'",
+		"y", "y'",
+		"z", "z'",
+		//M moves
+		"MU", "MU2", "MU'",
+		"ML", "ML2", "ML'",
+		"MR", "MR2", "MR'",
+		"MD", "MD2", "MD'"};
 	
 	static {
 		BASIC_MOVES = new HashSet<Character>();
@@ -522,5 +540,13 @@ public class Cube44 {
 		default:
 			System.err.println("Move not recognized: " + move);
 		}
+	}
+	
+	public void shuffle() {
+		int nb_moves = MOVES.length;
+		Random rand = new Random();
+		
+		for (int i = 0; i < 50; ++i)
+			executeMove(MOVES[rand.nextInt(nb_moves)]);
 	}
 }

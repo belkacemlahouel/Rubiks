@@ -57,6 +57,22 @@ public class Cube44 {
 		faces.put("back", new Face44(copy.faces.get("back"))); //background
 		faces.put("top", new Face44(copy.faces.get("top")));
 		faces.put("bot", new Face44(copy.faces.get("bot")));
+		rpz = new String[6];
+		rpz[0] = "\033[31;1m █"; //red
+		rpz[1] = "\033[34;1m █"; //blue
+		rpz[2] = "\033[32;1m █"; //green
+		rpz[3] = "\033[0;36m █"; //cyan
+		rpz[4] = "\033[33;1m █"; //yellow
+		rpz[5] = "\033[35;1m █"; //pink
+	}
+	public void set(Cube44 copy){
+		faces.clear();
+		faces.put("left", new Face44(copy.faces.get("left")));
+		faces.put("fore", new Face44(copy.faces.get("fore"))); //foreground
+		faces.put("right", new Face44(copy.faces.get("right")));
+		faces.put("back", new Face44(copy.faces.get("back"))); //background
+		faces.put("top", new Face44(copy.faces.get("top")));
+		faces.put("bot", new Face44(copy.faces.get("bot")));
 	}
 	
 	@Override

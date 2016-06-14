@@ -22,6 +22,7 @@ public class Cube44 {
 		M_MOVES.add('L');
 		M_MOVES.add('R');
 		M_MOVES.add('D');
+		M_MOVES.add('B');
 	}
 
 	public HashMap<String, Face44> faces;
@@ -313,6 +314,9 @@ public class Cube44 {
 	public void MD(){tright(2);}
 	public void MD2(){tright(2); tright(2);}
 	public void MDinv(){tleft(2);}
+	public void MB(){tleft(); tdown(2); tright();}
+	public void MB2(){tleft(); tdown(2); tdown(2); tright();}
+	public void MBinv(){tleft(); tup(2); tright();}
 	public void XX(){tup();} //rotation du cube selon l'axe x
 	public void XXinv(){tdown();} //rotation inverse du cube selon l'axe x
 	public void YY(){tleft();} //rotation du cube selon l'axe x
@@ -364,7 +368,7 @@ public class Cube44 {
 				++i;
 			}
 			
-			while (i < seq.length() && seq.charAt(i) != ' ' && !BASIC_MOVES.contains(seq.charAt(i))) {
+			while (i < seq.length() && seq.charAt(i) != ' ' && !BASIC_MOVES.contains(seq.charAt(i)) && seq.charAt(i) != 'M') {
 				move += seq.charAt(i);
 				++i;
 			}
@@ -487,6 +491,16 @@ public class Cube44 {
 			MDinv();
 			break;
 
+		case "MB":
+			MB();
+			break;
+		case "MB2":
+			MB2();
+			break;
+		case "MB'":
+			MBinv();
+			break;
+			
 		case "x":
 			XX();
 			break;

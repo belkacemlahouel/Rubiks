@@ -4,7 +4,7 @@ public class Application {
 	public static void main(String[] args) {
 		Algorithme tabou = new Algorithme();
 		Cube44 cube = new Cube44();
-		
+		//cube.executeSeq("MRB'R2U'RUMRU'R'UR'L'ML'DMR2B'R2U'RUMRU'R'UR'L'ML'D");
 		System.out.println(cube);
 		
 		Cube44 res = tabou.tabuSearch(cube);

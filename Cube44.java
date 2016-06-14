@@ -14,6 +14,9 @@ public class Cube44 {
 		BASIC_MOVES.add('F');
 		BASIC_MOVES.add('B');
 		BASIC_MOVES.add('M');
+		BASIC_MOVES.add('x');
+		BASIC_MOVES.add('y');
+		BASIC_MOVES.add('z');
 		
 		M_MOVES = new HashSet<Character>();
 		M_MOVES.add('U');
@@ -494,6 +497,28 @@ public class Cube44 {
 		case "MD'":
 			MDinv();
 			break;
+			
+		case "x":
+			XX();
+			break;
+		case "x'":
+			XXinv();
+			break;
+			
+		case "y":
+			YY();
+			break;
+		case "y'":
+			YYinv();
+			break;
+			
+		case "z":
+			ZZ();
+			break;
+		case "z'":
+			ZZinv();
+			break;
+		
 		default:
 			System.err.println("Move not recognized: " + move);
 		}

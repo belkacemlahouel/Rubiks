@@ -31,7 +31,7 @@ public class Cube44 {
 		BASIC_MOVES.add('D');
 		BASIC_MOVES.add('F');
 		BASIC_MOVES.add('B');
-		BASIC_MOVES.add('M');
+		//BASIC_MOVES.add('M');
 		BASIC_MOVES.add('x');
 		BASIC_MOVES.add('y');
 		BASIC_MOVES.add('z');
@@ -41,6 +41,7 @@ public class Cube44 {
 		M_MOVES.add('L');
 		M_MOVES.add('R');
 		M_MOVES.add('D');
+		M_MOVES.add('B');
 	}
 
 	public HashMap<String, Face44> faces;
@@ -130,8 +131,6 @@ public class Cube44 {
 
 	//turn VERS la droite
 	public void tright(int line) {
-		System.out.println("tright " + line);
-		
 		int[] tmp = new int[4];
 		int[] tmp2 = new int[4];
 		
@@ -164,8 +163,6 @@ public class Cube44 {
 	
 	//turn VERS la gauche
 	public void tleft(int line) {
-		System.out.println("tleft " + line);
-		
 		int[] tmp = new int[4];
 		int[] tmp2 = new int[4];
 		
@@ -197,7 +194,6 @@ public class Cube44 {
 	}
 	
 	public void tdown(int col) {
-		System.out.println("tdown " + col);
 		
 		int[] tmp = new int[4];
 		int[] tmp2 = new int[4];
@@ -230,7 +226,6 @@ public class Cube44 {
 	}
 	
 	public void tup(int col) {
-		System.out.println("tup " + col);
 		
 		int[] tmp = new int[4];
 		int[] tmp2 = new int[4];
@@ -263,7 +258,6 @@ public class Cube44 {
 	}
 
 	public void tup() {
-		System.out.println("tup");
 		
 		faces.get("back").transposeLC();
 		swapFaces("fore", "bot");
@@ -275,7 +269,6 @@ public class Cube44 {
 	}
 	
 	public void tdown() {
-		System.out.println("tdown");
 		
 		faces.get("back").transposeLC();
 		swapFaces("fore", "top");
@@ -287,7 +280,6 @@ public class Cube44 {
 	}
 	
 	public void tright() {
-		System.out.println("tright");
 		
 		swapFaces("fore", "left");
 		swapFaces("left", "back");
@@ -297,7 +289,6 @@ public class Cube44 {
 	}
 	
 	public void tleft() {
-		System.out.println("tleft");
 		
 		swapFaces("fore", "right");
 		swapFaces("right", "back");
@@ -342,6 +333,9 @@ public class Cube44 {
 	public void MD(){tright(2);}
 	public void MD2(){tright(2); tright(2);}
 	public void MDinv(){tleft(2);}
+	public void MB(){tleft(); tdown(2); tright();}
+	public void MB2(){tleft(); tdown(2); tdown(2); tright();}
+	public void MBinv(){tleft(); tup(2); tright();}
 	public void XX(){tup();} //rotation du cube selon l'axe x
 	public void XXinv(){tdown();} //rotation inverse du cube selon l'axe x
 	public void YY(){tleft();} //rotation du cube selon l'axe x
@@ -393,7 +387,7 @@ public class Cube44 {
 				++i;
 			}
 			
-			while (i < seq.length() && seq.charAt(i) != ' ' && !BASIC_MOVES.contains(seq.charAt(i))) {
+			while (i < seq.length() && seq.charAt(i) != ' ' && !BASIC_MOVES.contains(seq.charAt(i)) && seq.charAt(i) != 'M') {
 				move += seq.charAt(i);
 				++i;
 			}
@@ -408,7 +402,7 @@ public class Cube44 {
 				++i;
 			}
 			
-			System.err.println(move);
+			//System.err.println(move);
 			
 			executeMove(move);
 		}
@@ -515,6 +509,16 @@ public class Cube44 {
 		case "MD'":
 			MDinv();
 			break;
+
+		case "MB":
+			MB();
+			break;
+		case "MB2":
+			MB2();
+			break;
+		case "MB'":
+			MBinv();
+			break;
 			
 		case "x":
 			XX();
@@ -522,21 +526,21 @@ public class Cube44 {
 		case "x'":
 			XXinv();
 			break;
-			
+
 		case "y":
 			YY();
 			break;
 		case "y'":
 			YYinv();
 			break;
-			
+
 		case "z":
 			ZZ();
 			break;
 		case "z'":
 			ZZinv();
 			break;
-		
+
 		default:
 			System.err.println("Move not recognized: " + move);
 		}

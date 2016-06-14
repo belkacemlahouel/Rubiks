@@ -2,7 +2,7 @@
 public class Application {
 
 	public static void main(String[] args) {
-		
+
 		testShuffle();
 	}
 	
@@ -19,6 +19,7 @@ public class Application {
 		cube.executeSeq("F2MUF2");
 		cube.executeSeq("L'U2LUL'ULRU2 xx'xR' U' R U' R'");
 		cube.executeSeq("F'MU'F2MD2F2MUMD'F");
+		cube.executeSeq("MRB'R2U'RUMRU'R'UR'L'ML'DMR2B'R2U'RUMRU'R'UR'L'ML'D");
 		System.out.println(cube);
 	}
 	

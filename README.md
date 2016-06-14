@@ -7,7 +7,7 @@ Algorithmique, 8INF870
 
 {firstname}.{lastname}1[at]uqac.ca  
 
-Sullivan Kowal
+Sullivan Kowal  
 Belkacem Lahouel  
 Anujan Ganeshalingam  
 Tevainui Mi You  

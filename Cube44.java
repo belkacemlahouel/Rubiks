@@ -1,9 +1,27 @@
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Random;
 
 public class Cube44 {
 	
 	public static final HashSet<Character> BASIC_MOVES, M_MOVES;
+	public static final String[] MOVES = {
+		//Basic moves
+		"R", "R2", "R'",
+		"L", "L2", "L'",
+		"U", "U2", "U'",
+		"D", "D2", "D'",
+		"F", "F2", "F'",
+		"B", "B2", "B'",
+		//x, y, z
+		"x", "x'",
+		"y", "y'",
+		"z", "z'",
+		//M moves
+		"MU", "MU2", "MU'",
+		"ML", "ML2", "ML'",
+		"MR", "MR2", "MR'",
+		"MD", "MD2", "MD'"};
 	
 	static {
 		BASIC_MOVES = new HashSet<Character>();
@@ -13,6 +31,7 @@ public class Cube44 {
 		BASIC_MOVES.add('D');
 		BASIC_MOVES.add('F');
 		BASIC_MOVES.add('B');
+		//BASIC_MOVES.add('M');
 		BASIC_MOVES.add('x');
 		BASIC_MOVES.add('y');
 		BASIC_MOVES.add('z');
@@ -394,12 +413,12 @@ public class Cube44 {
 				++i;
 			}
 			
-			if (_m && i < seq.length() && seq.charAt(i) != ' ' && !BASIC_MOVES.contains(seq.charAt(i))) {
+			if (_m && i < seq.length() && seq.charAt(i) != ' ' && !BASIC_MOVES.contains(seq.charAt(i)) && seq.charAt(i) != 'M') {
 				move += seq.charAt(i);
 				++i;
 			}
 			
-			//System.err.println(move);
+			System.err.println(move);
 			
 			executeMove(move);
 		}
@@ -523,20 +542,31 @@ public class Cube44 {
 		case "x'":
 			XXinv();
 			break;
+
 		case "y":
 			YY();
 			break;
 		case "y'":
 			YYinv();
 			break;
+
 		case "z":
 			ZZ();
 			break;
 		case "z'":
 			ZZinv();
 			break;
+
 		default:
 			System.err.println("Move not recognized: " + move);
 		}
+	}
+	
+	public void shuffle() {
+		int nb_moves = MOVES.length;
+		Random rand = new Random();
+		
+		for (int i = 0; i < 50; ++i)
+			executeMove(MOVES[rand.nextInt(nb_moves)]);
 	}
 }

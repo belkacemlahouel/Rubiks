@@ -2,11 +2,19 @@
 public class Application {
 
 	public static void main(String[] args) {
-
+		
+		testAnnealing();
+		//testShuffle();
+		//testParseSeq();
+		//testTabu();
+		//testRandom();
+	}
+	
+	public static void testAnnealing() {
 		Cube44 cube = new Cube44();
 		System.out.println(cube);
 		
-		cube.shuffle(50);
+		cube.shuffle();
 		System.out.println(cube);
 		
 		cube = Annealing.solve(cube);
@@ -15,9 +23,30 @@ public class Application {
 	
 	public static void testShuffle() {
 		Cube44 cube = new Cube44();
+		
 		System.out.println(cube);
-		cube.shuffle(50);
+		cube.shuffle();
 		System.out.println(cube);
+	}
+	
+	public static void testRandom() {
+		Cube44 cube = new Cube44();
+		Algorithme tabou = new Algorithme();
+		cube.shuffle();
+		Cube44 res = new Cube44( tabou.randomAlgo(cube));
+		
+		System.out.println(cube);
+		System.out.println(res);
+	}
+	
+	public static void testTabu() {
+		Cube44 cube = new Cube44();
+		Algorithme tabou = new Algorithme();
+		cube.shuffle();
+		Cube44 res = new Cube44( tabou.tabuSearch(cube));
+		
+		System.out.println(cube);
+		System.out.println(res);
 	}
 	
 	public static void testParseSeq() {

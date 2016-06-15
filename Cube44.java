@@ -42,6 +42,7 @@ public class Cube44 {
 		M_MOVES.add('R');
 		M_MOVES.add('D');
 		M_MOVES.add('B');
+		M_MOVES.add('F');
 	}
 
 	public HashMap<String, Face44> faces;
@@ -76,7 +77,7 @@ public class Cube44 {
 		faces.put("back", new Face44(copy.faces.get("back"))); //background
 		faces.put("top", new Face44(copy.faces.get("top")));
 		faces.put("bot", new Face44(copy.faces.get("bot")));
-		
+
 		//ansi color, 31m = red, 31;1m = bright red
 		//install: https://marketplace.eclipse.org/content/ansi-escape-console
 		//drag and drop in eclipse
@@ -87,6 +88,16 @@ public class Cube44 {
 		rpz[3] = "\033[0;36m █"; //cyan
 		rpz[4] = "\033[33;1m █"; //yellow
 		rpz[5] = "\033[35;1m █"; //pink
+	}
+	
+	public void set(Cube44 copy) {
+		faces.clear();
+		faces.put("left", new Face44(copy.faces.get("left")));
+		faces.put("fore", new Face44(copy.faces.get("fore"))); //foreground
+		faces.put("right", new Face44(copy.faces.get("right")));
+		faces.put("back", new Face44(copy.faces.get("back"))); //background
+		faces.put("top", new Face44(copy.faces.get("top")));
+		faces.put("bot", new Face44(copy.faces.get("bot")));
 	}
 	
 	@Override
@@ -342,6 +353,15 @@ public class Cube44 {
 		return true;
 	}
 	
+	public void shuffle() {
+		int nb_moves = MOVES.length;
+		Random rand = new Random();
+		
+		for (int i = 0; i < 50; ++i)
+			executeMove(MOVES[rand.nextInt(nb_moves)]);
+	}
+	
+	
 	public void shuffle(int nb_sh) {
 		int nb_moves = MOVES.length;
 		Random rand = new Random();
@@ -497,6 +517,15 @@ public class Cube44 {
 		case "MB'":
 			MBinv();
 			break;
+		case "MF":
+			MF();
+			break;
+		case "MF2":
+			MF2();
+			break;
+		case "MF'":
+			MFinv();
+			break;
 			
 		case "x":
 			XX();
@@ -557,6 +586,9 @@ public class Cube44 {
 	public void MB(){tleft(); tdown(2); tright();}
 	public void MB2(){tleft(); tdown(2); tdown(2); tright();}
 	public void MBinv(){tleft(); tup(2); tright();}
+	public void MF(){tleft(); tup(1); tright();}
+	public void MF2(){tleft(); tup(1); tup(1); tright();}
+	public void MFinv(){tleft(); tdown(1); tright();}
 	public void XX(){tup();} //rotation du cube selon l'axe x
 	public void XXinv(){tdown();} //rotation inverse du cube selon l'axe x
 	public void YY(){tleft();} //rotation du cube selon l'axe x

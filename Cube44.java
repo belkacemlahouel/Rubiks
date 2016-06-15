@@ -42,6 +42,7 @@ public class Cube44 {
 		M_MOVES.add('R');
 		M_MOVES.add('D');
 		M_MOVES.add('B');
+		M_MOVES.add('F');
 	}
 
 	public HashMap<String, Face44> faces;
@@ -352,6 +353,9 @@ public class Cube44 {
 	public void MB(){tleft(); tdown(2); tright();}
 	public void MB2(){tleft(); tdown(2); tdown(2); tright();}
 	public void MBinv(){tleft(); tup(2); tright();}
+	public void MF(){tleft(); tup(1); tright();}
+	public void MF2(){tleft(); tup(1); tup(1); tright();}
+	public void MFinv(){tleft(); tdown(1); tright();}
 	public void XX(){tup();} //rotation du cube selon l'axe x
 	public void XXinv(){tdown();} //rotation inverse du cube selon l'axe x
 	public void YY(){tleft();} //rotation du cube selon l'axe x
@@ -418,7 +422,7 @@ public class Cube44 {
 				++i;
 			}
 			
-			System.err.println(move);
+			//System.err.println(move);
 			
 			executeMove(move);
 		}
@@ -535,6 +539,15 @@ public class Cube44 {
 		case "MB'":
 			MBinv();
 			break;
+		case "MF":
+			MF();
+			break;
+		case "MF2":
+			MF2();
+			break;
+		case "MF'":
+			MFinv();
+			break;
 			
 		case "x":
 			XX();
@@ -567,6 +580,13 @@ public class Cube44 {
 		Random rand = new Random();
 		
 		for (int i = 0; i < 50; ++i)
+			executeMove(MOVES[rand.nextInt(nb_moves)]);
+	}
+	public void shuffle(int iter) {
+		int nb_moves = MOVES.length;
+		Random rand = new Random();
+		
+		for (int i = 0; i < iter; ++i)
 			executeMove(MOVES[rand.nextInt(nb_moves)]);
 	}
 }

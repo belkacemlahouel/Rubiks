@@ -78,7 +78,7 @@ public class Algorithme {
 				res.set(tmpSolu);
 			}
 			if(current_value == tmpSolu.valeur1()){
-				//si on reste bloquer à une certaine valeur trop longtemps
+				//si on reste bloquer ï¿½ une certaine valeur trop longtemps
 				//on shuffle de 5 mouvements
 				shuffle_count++;
 				if(shuffle_count > 10){
@@ -102,7 +102,7 @@ public class Algorithme {
 		return res;
 	}
 	
-	public void readFile(String name, ArrayList<String> formules){
+	public static void readFile(String name, ArrayList<String> formules){
 		
 		BufferedReader br = null;
 		try {

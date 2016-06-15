@@ -1,7 +1,15 @@
+import java.util.ArrayList;
 import java.util.Random;
 
 
 public class Annealing {
+	
+	private static ArrayList<String> formules;
+	
+	static {		
+		formules = new ArrayList<String>();
+		Algorithme.readFile("ofapel", formules);
+	}
 
 	public static final String[] MOVES = {
 		//Basic moves
@@ -22,6 +30,8 @@ public class Annealing {
 		"MD", "MD2", "MD'"};
 	
 	public static final Cube44 PERFECT = new Cube44();
+	
+	// -----
 	
 	public static Cube44 solve(Cube44 cube) {
 		Random rand = new Random();

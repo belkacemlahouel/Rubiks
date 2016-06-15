@@ -6,7 +6,7 @@ public class Application {
 		Cube44 cube = new Cube44();
 		System.out.println(cube);
 		
-		cube.shuffle();
+		cube.shuffle(50);
 		System.out.println(cube);
 		
 		cube = Annealing.solve(cube);
@@ -16,7 +16,7 @@ public class Application {
 	public static void testShuffle() {
 		Cube44 cube = new Cube44();
 		System.out.println(cube);
-		cube.shuffle();
+		cube.shuffle(50);
 		System.out.println(cube);
 	}
 	

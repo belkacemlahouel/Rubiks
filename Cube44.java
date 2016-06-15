@@ -314,46 +314,6 @@ public class Cube44 {
 		faces.replace(b, face);
 	}
 	
-	public void R(){tup(3);}
-	public void R2(){tup(3); tup(3);}
-	public void Rinv(){tdown(3);}
-	public void L(){tdown(0);}
-	public void L2(){tdown(0); tdown(0);}
-	public void Linv(){tup(0);}
-	public void U(){tleft(0);}
-	public void U2(){tleft(0); tleft(0);}
-	public void Uinv(){tright(0);}
-	public void D(){tright(3);}
-	public void D2(){tright(3); tright(3);}
-	public void Dinv(){tleft(3);}
-	public void F(){tright(); tup(3); tleft();}
-	public void F2(){tright(); tup(3); tup(3); tleft();}
-	public void Finv(){tright(); tdown(3); tleft();}
-	public void B(){tleft(); tup(3); tright();}
-	public void B2(){tleft(); tup(3); tup(3); tright();}
-	public void Binv(){tleft(); tdown(3); tright();}
-	public void MU(){tleft(1);}
-	public void MU2(){tleft(1); tleft(1);}
-	public void MUinv(){tright(1);}
-	public void ML(){tdown(1);}
-	public void ML2(){tdown(1); tdown(1);}
-	public void MLinv(){tup(1);}
-	public void MR(){tup(2);}
-	public void MR2(){tup(2); tup(2);}
-	public void MRinv(){tdown(2);}
-	public void MD(){tright(2);}
-	public void MD2(){tright(2); tright(2);}
-	public void MDinv(){tleft(2);}
-	public void MB(){tleft(); tdown(2); tright();}
-	public void MB2(){tleft(); tdown(2); tdown(2); tright();}
-	public void MBinv(){tleft(); tup(2); tright();}
-	public void XX(){tup();} //rotation du cube selon l'axe x
-	public void XXinv(){tdown();} //rotation inverse du cube selon l'axe x
-	public void YY(){tleft();} //rotation du cube selon l'axe x
-	public void YYinv(){tright();} //rotation inverse du cube selon l'axe x
-	public void ZZ(){tdown(); tright(); tup();} //rotation du cube selon l'axe x
-	public void ZZinv(){tdown(); tleft(); tup();} //rotation inverse du cube selon l'axe x
-	
 	public boolean equals(Cube44 o) {
 		if (o.faces.get("left").equals(faces.get("left")) &&
 				o.faces.get("right").equals(faces.get("right")) &&
@@ -380,6 +340,14 @@ public class Cube44 {
 			if(!face.isUnicolor()) return false;
 		}
 		return true;
+	}
+	
+	public void shuffle(int nb_sh) {
+		int nb_moves = MOVES.length;
+		Random rand = new Random();
+		
+		for (int i = 0; i < nb_sh; ++i)
+			executeMove(MOVES[rand.nextInt(nb_moves)]);
 	}
 	
 	public void executeSeq(String seq) {
@@ -556,11 +524,43 @@ public class Cube44 {
 		}
 	}
 	
-	public void shuffle() {
-		int nb_moves = MOVES.length;
-		Random rand = new Random();
-		
-		for (int i = 0; i < 50; ++i)
-			executeMove(MOVES[rand.nextInt(nb_moves)]);
-	}
+	public void R(){tup(3);}
+	public void R2(){tup(3); tup(3);}
+	public void Rinv(){tdown(3);}
+	public void L(){tdown(0);}
+	public void L2(){tdown(0); tdown(0);}
+	public void Linv(){tup(0);}
+	public void U(){tleft(0);}
+	public void U2(){tleft(0); tleft(0);}
+	public void Uinv(){tright(0);}
+	public void D(){tright(3);}
+	public void D2(){tright(3); tright(3);}
+	public void Dinv(){tleft(3);}
+	public void F(){tright(); tup(3); tleft();}
+	public void F2(){tright(); tup(3); tup(3); tleft();}
+	public void Finv(){tright(); tdown(3); tleft();}
+	public void B(){tleft(); tup(3); tright();}
+	public void B2(){tleft(); tup(3); tup(3); tright();}
+	public void Binv(){tleft(); tdown(3); tright();}
+	public void MU(){tleft(1);}
+	public void MU2(){tleft(1); tleft(1);}
+	public void MUinv(){tright(1);}
+	public void ML(){tdown(1);}
+	public void ML2(){tdown(1); tdown(1);}
+	public void MLinv(){tup(1);}
+	public void MR(){tup(2);}
+	public void MR2(){tup(2); tup(2);}
+	public void MRinv(){tdown(2);}
+	public void MD(){tright(2);}
+	public void MD2(){tright(2); tright(2);}
+	public void MDinv(){tleft(2);}
+	public void MB(){tleft(); tdown(2); tright();}
+	public void MB2(){tleft(); tdown(2); tdown(2); tright();}
+	public void MBinv(){tleft(); tup(2); tright();}
+	public void XX(){tup();} //rotation du cube selon l'axe x
+	public void XXinv(){tdown();} //rotation inverse du cube selon l'axe x
+	public void YY(){tleft();} //rotation du cube selon l'axe x
+	public void YYinv(){tright();} //rotation inverse du cube selon l'axe x
+	public void ZZ(){tdown(); tright(); tup();} //rotation du cube selon l'axe x
+	public void ZZinv(){tdown(); tleft(); tup();} //rotation inverse du cube selon l'axe x
 }

@@ -39,14 +39,14 @@ public class Annealing {
 		Cube44 cur_best = new Cube44(cube);
 		Cube44 best = new Cube44(cube);
 		
-		//int best_evl = eval(best);
-		int best_evl = best.valeur1();
+		int best_evl = eval(best, 1);
+		//int best_evl = best.valeur1();
 		int cur_evl = best_evl;
 		
 		System.out.println(best_evl);
 		
-		for (int i = 0; i < 10000; ++i) {
-			for (int j = 0; j < 100; ++j) {
+		for (int i = 0; i < 100; ++i) {
+			for (int j = 0; j < 10; ++j) {
 				Cube44 tmp = new Cube44(cur_best);
 				
 				boolean change = false;
@@ -55,8 +55,8 @@ public class Annealing {
 					int rnd_seq = rand.nextInt(OFAPEL.size());
 					tmp.executeSeq(OFAPEL.get(rnd_seq));
 					
-					//int tmp_evl = eval(tmp);
-					int tmp_evl = tmp.valeur1();
+					int tmp_evl = eval(tmp, 1);
+					//int tmp_evl = tmp.valeur1();
 					
 					if (best_evl < tmp_evl) {
 						best = tmp;
@@ -64,7 +64,7 @@ public class Annealing {
 						change = true;
 					}
 					
-					if (cur_evl < tmp_evl + 10) {
+					if (cur_evl < tmp_evl + 5) {
 						cur_best = tmp;
 						cur_evl = tmp_evl;
 					}
@@ -80,8 +80,8 @@ public class Annealing {
 					int rnd_mv = rand.nextInt(MOVES.length);
 					tmp.executeMove(MOVES[rnd_mv]);
 					
-					//int tmp_evl = eval(tmp);
-					int tmp_evl = tmp.valeur1();
+					int tmp_evl = eval(tmp, 1);
+					//int tmp_evl = tmp.valeur1();
 					
 					if (best_evl < tmp_evl) {
 						best = tmp;
@@ -105,7 +105,75 @@ public class Annealing {
 		return best;
 	}
 	
-	private static int eval(Cube44 cube) {
+	//each time we try all ofapel moves and we keep the best result and we move on
+	public static Cube44 solve2(Cube44 cube, int n_evl) {		
+		Cube44 best = new Cube44(cube);
+		Cube44 best_best = null;
+		
+		int best_evl = eval(best, n_evl);
+		int best_best_evl = best_evl;
+		System.out.println(best_evl);
+		
+		for (int i = 0; i < 400; ++i) {
+			for (int j = 0; j < 100; ++j) {
+				Cube44 cur = null;
+				int cur_evl = 0;
+				
+				for (String ofapel_mv : OFAPEL) {
+					Cube44 tmp = new Cube44(best);
+					tmp.executeSeq(ofapel_mv);
+					
+					int tmp_evl = eval(tmp, n_evl);
+										
+					if (cur_evl < tmp_evl || cur == null) {
+						cur = tmp;
+						cur_evl = tmp_evl;
+					}
+				}
+				
+				for (String basic_mv : MOVES) {
+					Cube44 tmp = new Cube44(best);
+					
+					for (int k = 0; k < 2; ++k) {
+						tmp.executeMove(basic_mv);
+						
+						int tmp_evl = eval(tmp, n_evl);
+						
+						//System.out.println(tmp_evl + ((tmp_evl > best_evl) ? ">" : "<=") + best_evl);
+						
+						if (cur_evl < tmp_evl || cur == null) {
+							cur = tmp;
+							cur_evl = tmp_evl;
+						}
+					}
+				}
+
+				best = cur;
+				best_evl = cur_evl;
+				
+				if (best_best_evl < best_evl || best_best == null) {
+					best_best = best;
+					best_best_evl = best_evl;
+				}
+			}
+			best.shuffle(5);
+		}
+		
+		System.out.println(best_best_evl + " " + best_evl);
+		return best_best;
+	}
+	
+	private static int eval(Cube44 cube, int n_evl) {
+		if (n_evl == 1)
+			return eval1(cube);
+		else if (n_evl == 2)
+			return eval2(cube);
+		else if (n_evl == 3)
+			return eval3(cube);
+		else return cube.valeur1();
+	}
+	
+	private static int eval1(Cube44 cube) {
 		int evl = 0;
 		for (String faceName : cube.faces.keySet()) {
 			for (int i = 0; i < 4; ++i) {
@@ -116,5 +184,51 @@ public class Annealing {
 			}
 		}
 		return evl;
+	}
+	
+	//corners + edge
+	private static int eval2(Cube44 cube) {
+		int evl = 0;
+		for (String faceName : cube.faces.keySet()) {
+			for (int i = 0; i < 4; ++i) {
+				for (int j = 0; j < 4; ++j) {
+					if (cube.faces.get(faceName).elems[i][j] == PERFECT.faces.get(faceName).elems[i][j]) {
+						if (isCorner(i, j)) {
+							evl += 3;
+						} else if (isEdge(i, j)) {
+							evl += 2;
+						} else ++evl;
+					}
+				}
+			}
+		}
+		return evl;
+	}
+	
+	//centres
+	private static int eval3(Cube44 cube) {
+		int evl = 0;
+		for (String faceName : cube.faces.keySet()) {
+			for (int i = 0; i < 4; ++i) {
+				for (int j = 0; j < 4; ++j) {
+					if (cube.faces.get(faceName).elems[i][j] == PERFECT.faces.get(faceName).elems[i][j]) {
+						if (!isEdge(i, j)) {
+							evl += 2;
+						} else ++evl;
+					}
+				}
+			}
+		}
+		return evl;
+	}
+	
+	//beware, please use isCorner before isEdge
+	private static boolean isEdge(int i, int j) {
+		return i == 0 || j == 0 || i == 3 || j == 3;
+	}
+	
+	private static boolean isCorner(int i, int j) {
+		return (i == 0 && (j == 0 || j == 3)) ||
+				(i == 3 && (j == 0 || j == 3));
 	}
 }

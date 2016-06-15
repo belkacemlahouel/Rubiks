@@ -17,7 +17,13 @@ public class Application {
 		cube.shuffle();
 		System.out.println(cube);
 		
-		cube = Annealing.solve(cube);
+		cube = Annealing.solve2(cube, 2);
+		System.out.println(cube);
+		
+		cube = Annealing.solve2(cube, 3);
+		System.out.println(cube);
+		
+		cube = Annealing.solve2(cube, 2);
 		System.out.println(cube);
 	}
 	

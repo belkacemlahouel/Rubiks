@@ -6,8 +6,8 @@ import java.util.Random;
 
 public class Algorithme {
 	
-	static private int NN = 3000; 
-	static private int max_tabu_size = 800; 
+	static private int NN = 500; 
+	static private int max_tabu_size = 400; 
 	private ArrayList<String> formules;
 	private ArrayList<String> formule_rand;
 	
@@ -48,8 +48,27 @@ public class Algorithme {
 		"zzx", "x'zz",
 		"zzx'", "xzz",
 		"zzy", "y'zz",
-		"zzy'", "yzz"
-		
+		"zzy'", "yzz",
+		"D", "D'",
+		"D'", "D",
+		"F", "F'",
+		"F'", "F",
+		"R", "R'",
+		"R'", "R",
+		"L", "L'",
+		"L'", "L",
+		"B", "B'",
+		"B'", "B",
+		"MD", "MD'",
+		"MD'", "MD",
+		"MF", "MF'",
+		"MF'", "MF",
+		"MR", "MR'",
+		"MR'", "MR",
+		"ML", "ML'",
+		"ML'", "ML",
+		"MB", "MB'",
+		"MB'", "MB"
 		};
 	
 	public Algorithme(){
@@ -139,7 +158,7 @@ public class Algorithme {
 				//si on reste bloquer à une certaine valeur trop longtemps
 				//on shuffle de 5 mouvements
 				shuffle_count++;
-				if(shuffle_count > 10){
+				if(shuffle_count > 20){
 					tmpSolu.shuffle(5);
 					shuffle_count=0;
 				}
@@ -153,7 +172,10 @@ public class Algorithme {
 			if(tabu_list.size() > max_tabu_size){
 				tabu_list.remove(0);
 			}
-			if(stop%30==0) System.err.println(stop*100.0/NN);
+			if(stop%30==0) {
+				System.err.println(stop*100.0/NN);
+				System.err.println(eval(tmpSolu));
+			}
 			stop++;
 		}
 		System.err.println("Valeur: " + res.valeur1());

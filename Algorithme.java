@@ -140,7 +140,7 @@ public class Algorithme {
 				//on shuffle de 5 mouvements
 				shuffle_count++;
 				if(shuffle_count > 10){
-					tmpSolu.shuffle(10);
+					tmpSolu.shuffle(5);
 					shuffle_count=0;
 				}
 			}

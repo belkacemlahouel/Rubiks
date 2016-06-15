@@ -34,28 +34,31 @@ public class Annealing {
 		
 		System.out.println(best_evl);
 		
-		for (int i = 0; i < 5000; ++i) {
-			Cube44 tmp = new Cube44(best);
-			
-			boolean change = false;
-			
-			while (!change) {				
-				int rnd_mv = rand.nextInt(MOVES.length);
-				tmp.executeMove(MOVES[rnd_mv]);
+		for (int i = 0; i < 1000; ++i) {
+			for (int j = 0; j < 100; ++j) {
+				Cube44 tmp = new Cube44(cur_best);
 				
-				int tmp_evl = eval(tmp);
+				boolean change = false;
 				
-				if (best_evl < tmp_evl) {
-					best = tmp;
-					best_evl = tmp_evl;
-				}
-				
-				if (cur_evl < tmp_evl + 10) {
-					cur_best = tmp;
-					cur_evl = tmp_evl;
-					change = true;
+				while (!change) {				
+					int rnd_mv = rand.nextInt(MOVES.length);
+					tmp.executeMove(MOVES[rnd_mv]);
+					
+					int tmp_evl = eval(tmp);
+					
+					if (best_evl < tmp_evl) {
+						best = tmp;
+						best_evl = tmp_evl;
+					}
+					
+					if (cur_evl < tmp_evl + 5) {
+						cur_best = tmp;
+						cur_evl = tmp_evl;
+						change = true;
+					}
 				}
 			}
+			//cur_best.shuffle(5);
 		}
 		
 		System.out.println(eval(best));

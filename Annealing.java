@@ -4,11 +4,11 @@ import java.util.Random;
 
 public class Annealing {
 	
-	private static ArrayList<String> formules;
+	public final static ArrayList<String> OFAPEL;
 	
 	static {		
-		formules = new ArrayList<String>();
-		Algorithme.readFile("ofapel", formules);
+		OFAPEL = new ArrayList<String>();
+		Algorithme.readFile("ofapel", OFAPEL);
 	}
 
 	public static final String[] MOVES = {
@@ -39,13 +39,39 @@ public class Annealing {
 		Cube44 cur_best = new Cube44(cube);
 		Cube44 best = new Cube44(cube);
 		
-		int best_evl = eval(best);
+		//int best_evl = eval(best);
+		int best_evl = best.valeur1();
 		int cur_evl = best_evl;
 		
 		System.out.println(best_evl);
 		
-		for (int i = 0; i < 1000; ++i) {
+		for (int i = 0; i < 10000; ++i) {
 			for (int j = 0; j < 100; ++j) {
+				Cube44 tmp = new Cube44(cur_best);
+				
+				boolean change = false;
+				
+				while (!change) {				
+					int rnd_seq = rand.nextInt(OFAPEL.size());
+					tmp.executeSeq(OFAPEL.get(rnd_seq));
+					
+					//int tmp_evl = eval(tmp);
+					int tmp_evl = tmp.valeur1();
+					
+					if (best_evl < tmp_evl) {
+						best = tmp;
+						best_evl = tmp_evl;
+						change = true;
+					}
+					
+					if (cur_evl < tmp_evl + 10) {
+						cur_best = tmp;
+						cur_evl = tmp_evl;
+					}
+				}
+			}
+			
+			for (int j = 0; j < 5; ++j) {
 				Cube44 tmp = new Cube44(cur_best);
 				
 				boolean change = false;
@@ -54,7 +80,8 @@ public class Annealing {
 					int rnd_mv = rand.nextInt(MOVES.length);
 					tmp.executeMove(MOVES[rnd_mv]);
 					
-					int tmp_evl = eval(tmp);
+					//int tmp_evl = eval(tmp);
+					int tmp_evl = tmp.valeur1();
 					
 					if (best_evl < tmp_evl) {
 						best = tmp;
@@ -68,10 +95,12 @@ public class Annealing {
 					}
 				}
 			}
-			//cur_best.shuffle(5);
+			
+			cur_best.shuffle(4);
 		}
 		
-		System.out.println(eval(best));
+		//System.out.println(eval(best));
+		System.out.println(best.valeur1());
 		
 		return best;
 	}

@@ -76,6 +76,17 @@ public class Cube44 {
 		faces.put("back", new Face44(copy.faces.get("back"))); //background
 		faces.put("top", new Face44(copy.faces.get("top")));
 		faces.put("bot", new Face44(copy.faces.get("bot")));
+		
+		//ansi color, 31m = red, 31;1m = bright red
+		//install: https://marketplace.eclipse.org/content/ansi-escape-console
+		//drag and drop in eclipse
+		rpz = new String[6];
+		rpz[0] = "\033[31;1m █"; //red
+		rpz[1] = "\033[34;1m █"; //blue
+		rpz[2] = "\033[32;1m █"; //green
+		rpz[3] = "\033[0;36m █"; //cyan
+		rpz[4] = "\033[33;1m █"; //yellow
+		rpz[5] = "\033[35;1m █"; //pink
 	}
 	
 	@Override
@@ -402,8 +413,7 @@ public class Cube44 {
 				++i;
 			}
 			
-			System.err.println(move);
-			
+			//System.err.println(move);
 			executeMove(move);
 		}
 	}

@@ -350,12 +350,12 @@ public class Cube44 {
 	public void MD(){tright(2);}
 	public void MD2(){tright(2); tright(2);}
 	public void MDinv(){tleft(2);}
-	public void MB(){tleft(); tdown(2); tright();}
-	public void MB2(){tleft(); tdown(2); tdown(2); tright();}
-	public void MBinv(){tleft(); tup(2); tright();}
-	public void MF(){tleft(); tup(1); tright();}
-	public void MF2(){tleft(); tup(1); tup(1); tright();}
-	public void MFinv(){tleft(); tdown(1); tright();}
+	public void MB(){tleft(); tup(2); tright();}
+	public void MB2(){tleft(); tup(2); tup(2); tright();}
+	public void MBinv(){tleft(); tdown(2); tright();}
+	public void MF(){tleft(); tdown(1); tright();}
+	public void MF2(){tleft(); tdown(1); tdown(1); tright();}
+	public void MFinv(){tleft(); tup(1); tright();}
 	public void XX(){tup();} //rotation du cube selon l'axe x
 	public void XXinv(){tdown();} //rotation inverse du cube selon l'axe x
 	public void YY(){tleft();} //rotation du cube selon l'axe x

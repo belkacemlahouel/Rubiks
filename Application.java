@@ -2,7 +2,19 @@
 public class Application {
 
 	public static void main(String[] args) {
-
+		/*Cube44 cube = new Cube44();
+		
+		System.out.println(cube);
+		cube.executeSeq("MFFBMBRMRLML");
+		System.out.println(cube);
+		cube.executeSeq("RLFBxyzMLMRMFMBxyz");
+		System.out.println(cube);
+		cube.executeSeq("z");
+		System.out.println(cube);
+		cube.executeSeq("x");
+		System.out.println(cube);
+		cube.executeSeq("y");
+		System.out.println(cube);*/
 		//testShuffle();
 		//testParseSeq();
 		testTabu();
@@ -30,6 +42,7 @@ public class Application {
 	public static void testTabu() {
 		Cube44 cube = new Cube44();
 		Algorithme tabou = new Algorithme();
+		System.out.println(cube);
 		cube.shuffle();
 		Cube44 res = new Cube44( tabou.tabuSearch(cube));
 		

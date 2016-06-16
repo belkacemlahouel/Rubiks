@@ -31,9 +31,81 @@ public class Annealing {
 	
 	public static final Cube44 PERFECT = new Cube44();
 	
+	public static final String[] axis_set = {
+		"x", "x'",
+		"xx", "xx",
+		"xy", "y'x'",
+		"x'y", "y'x",
+		"xy'", "yx'",
+		"xz", "z'x'",
+		"x'z", "z'x",
+		"xz'", "zx'",
+		"y", "y'",
+		"yy", "yy",
+		"yz", "z'y'",
+		"y'z", "z'y",
+		"yz'", "zy'",
+		"z", "z'",
+		"zz", "zz",
+		"xyz", "z'y'x'",
+		"xyz'", "zy'x'",
+		"xy'z", "z'yx'",
+		"xy'z'", "zyx'",
+		"x'yz", "z'y'x",
+		"x'yz'", "zy'x",
+		"x'y'z", "z'yx",
+		"x'y'z'", "zyx",
+		"xxy", "y'xx",
+		"xxy'", "yxx",
+		"xxz", "z'xx",
+		"xxz'", "zxx",
+		"yyx", "x'yy",
+		"yyx'", "xyy",
+		"yyz", "z'yy",
+		"yyz'", "zyy",
+		"zzx", "x'zz",
+		"zzx'", "xzz",
+		"zzy", "y'zz",
+		"zzy'", "yzz",
+		"yxx", "xxy'",
+		"y'xx", "xxy",
+		"zxx", "xxz'",
+		"z'xx", "xxz",
+		"xyy", "yyx'",
+		"x'yy", "yyx",
+		"zyy", "yyz'",
+		"z'yy", "yyz",
+		"xzz", "zzx'",
+		"x'zz", "zzx",
+		"yzz", "zzy'",
+		"y'zz", "zzy",
+		"D", "D'",
+		"D'", "D",
+		"F", "F'",
+		"F'", "F",
+		"R", "R'",
+		"R'", "R",
+		"L", "L'",
+		"L'", "L",
+		"B", "B'",
+		"B'", "B",
+		"MD", "MD'",
+		"MD'", "MD",
+		"MF", "MF'",
+		"MF'", "MF",
+		"MR", "MR'",
+		"MR'", "MR",
+		"ML", "ML'",
+		"ML'", "ML",
+		"MB", "MB'",
+		"MB'", "MB"
+		};
+
 	// -----
 	
 	public static Cube44 solve(Cube44 cube) {
+		addAxisToFormulas();
+		
 		Random rand = new Random();
 				
 		Cube44 cur_best = new Cube44(cube);
@@ -45,8 +117,8 @@ public class Annealing {
 		
 		System.out.println(best_evl);
 		
-		for (int i = 0; i < 100; ++i) {
-			for (int j = 0; j < 10; ++j) {
+		for (int i = 0; i < 10; ++i) {
+			for (int j = 0; j < 5; ++j) {
 				Cube44 tmp = new Cube44(cur_best);
 				
 				boolean change = false;
@@ -230,5 +302,27 @@ public class Annealing {
 	private static boolean isCorner(int i, int j) {
 		return (i == 0 && (j == 0 || j == 3)) ||
 				(i == 3 && (j == 0 || j == 3));
+	}
+
+
+	private static void addAxisToFormulas() {
+		ArrayList<String> tmp = new ArrayList<String>();
+		int i;
+		
+		for (String formule : OFAPEL) {
+			i = 0;
+			while (i < axis_set.length) {
+				StringBuilder mystr = new StringBuilder();
+				mystr.append(axis_set[i]);
+				mystr.append(OFAPEL);
+				mystr.append(axis_set[i+1]);
+				tmp.add(mystr.toString());
+				i = i+2;
+			}
+		}
+		
+		for (String str : tmp) {
+			OFAPEL.add(str);
+		}
 	}
 }

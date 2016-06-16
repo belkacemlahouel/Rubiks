@@ -17,14 +17,14 @@ public class Application {
 		cube.shuffle();
 		System.out.println(cube);
 		
-		cube = Annealing.solve2(cube, 2);
+		cube = Annealing.solve2(cube, 0);
 		System.out.println(cube);
 		
 		cube = Annealing.solve2(cube, 3);
 		System.out.println(cube);
 		
-		cube = Annealing.solve2(cube, 2);
-		System.out.println(cube);
+		/*cube = Annealing.solve2(cube, 2);
+		System.out.println(cube);*/
 	}
 	
 	public static void testShuffle() {

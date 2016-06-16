@@ -6,7 +6,7 @@ import java.util.Random;
 
 public class Algorithme {
 	
-	static private int NN = 500; 
+	static private int NN = 700; 
 	static private int max_tabu_size = 400; 
 	private ArrayList<String> formules;
 	private ArrayList<String> formule_rand;
@@ -49,6 +49,18 @@ public class Algorithme {
 		"zzx'", "xzz",
 		"zzy", "y'zz",
 		"zzy'", "yzz",
+		"yxx", "xxy'",
+		"y'xx", "xxy",
+		"zxx", "xxz'",
+		"z'xx", "xxz",
+		"xyy", "yyx'",
+		"x'yy", "yyx",
+		"zyy", "yyz'",
+		"z'yy", "yyz",
+		"xzz", "zzx'",
+		"x'zz", "zzx",
+		"yzz", "zzy'",
+		"y'zz", "zzy",
 		"D", "D'",
 		"D'", "D",
 		"F", "F'",
@@ -137,18 +149,24 @@ public class Algorithme {
 		ArrayList<Cube44> tabu_list = new ArrayList<Cube44>();
 		int stop = 0, shuffle_count = 0, current_value = 0;
 		System.err.println("Valeur: " + res.valeur1());
-		while(stop < NN){
+		StringBuilder complete_moves = new StringBuilder();
+		while(stop < NN && !res.isSolved()){
 			boolean first_iteration = true;
 			//generation du voisinage
+			String tmpstr = "";
+			int iteration = 0;
 			for(Cube44 cube : generateNeigh(tmpSolu)){
 				if(first_iteration){
 					bestNeigh.set(cube);
 					first_iteration = false;
 				}
 				else if (!tabu_list.contains(cube) && (isBetter2(cube, bestNeigh))) {
+					tmpstr = formules.get(iteration);
 					bestNeigh.set(cube);
 				}
+				iteration++;
 			}
+			complete_moves.append(tmpstr);
 			tmpSolu.set(bestNeigh);
 			if(!isBetter2(res, tmpSolu)){
 				System.err.println("Valeur: " + eval(res) + " < " + eval(tmpSolu));
@@ -159,7 +177,7 @@ public class Algorithme {
 				//on shuffle de 5 mouvements
 				shuffle_count++;
 				if(shuffle_count > 20){
-					tmpSolu.shuffle(5);
+					complete_moves.append(tmpSolu.shuffle1(5));
 					shuffle_count=0;
 				}
 			}
@@ -179,6 +197,7 @@ public class Algorithme {
 			stop++;
 		}
 		System.err.println("Valeur: " + res.valeur1());
+		System.err.println("Mouvements : "+complete_moves.toString());
 		return res;
 	}
 	

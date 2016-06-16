@@ -589,4 +589,15 @@ public class Cube44 {
 		for (int i = 0; i < iter; ++i)
 			executeMove(MOVES[rand.nextInt(nb_moves)]);
 	}
+	public String shuffle1(int iter) {
+		int nb_moves = MOVES.length;
+		Random rand = new Random();
+		StringBuilder str = new StringBuilder();
+		for (int i = 0; i < iter; ++i){
+			String tmp = MOVES[rand.nextInt(nb_moves)];
+			executeMove(tmp);
+			str.append(tmp);
+		}
+		return str.toString();
+	}
 }

@@ -187,7 +187,7 @@ public class Annealing {
 		System.out.println(best_evl);
 		
 		for (int i = 0; i < 400; ++i) {
-			for (int j = 0; j < 100; ++j) {
+			for (int j = 0; j < 60; ++j) {
 				Cube44 cur = null;
 				int cur_evl = 0;
 				
@@ -228,14 +228,22 @@ public class Annealing {
 					best_best_evl = best_evl;
 				}
 			}
-			best.shuffle(5);
+			
+			while (best_best_evl - (best_evl = eval(best, n_evl)) < 5) {
+				best.shuffle(1);
+				
+				if (best_best_evl < best_evl) {
+					best_best = best;
+					best_best_evl = best_evl;
+				}
+			}
 		}
 		
 		System.out.println(best_best_evl + " " + best_evl);
 		return best_best;
 	}
 	
-	private static int eval(Cube44 cube, int n_evl) {
+	public static int eval(Cube44 cube, int n_evl) {
 		if (n_evl == 1)
 			return eval1(cube);
 		else if (n_evl == 2)

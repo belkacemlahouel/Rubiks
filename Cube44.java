@@ -370,6 +370,12 @@ public class Cube44 {
 			executeMove(MOVES[rand.nextInt(nb_moves)]);
 	}
 	
+	public void executeSeq(String[] moves) {
+		for (String mv : moves) {
+			executeSeq(mv);
+		}
+	}
+	
 	public void executeSeq(String seq) {
 		int i = 0;
 		

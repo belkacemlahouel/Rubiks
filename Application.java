@@ -4,10 +4,21 @@ public class Application {
 	public static void main(String[] args) {
 		
 		testAnnealing();
+		//testAnnealing2();
 		//testShuffle();
 		//testParseSeq();
 		//testTabu();
 		//testRandom();
+	}
+	
+	public static void testAnnealing2() {
+		Cube44 cube = new Cube44();
+		
+		cube.shuffle();
+		System.out.println(cube);
+		
+		cube = SolutionAnnealing.solve(cube, 1);
+		System.out.println(cube);
 	}
 	
 	public static void testAnnealing() {
@@ -20,8 +31,8 @@ public class Application {
 		cube = Annealing.solve2(cube, 0);
 		System.out.println(cube);
 		
-		cube = Annealing.solve2(cube, 1);
-		System.out.println(cube);
+		//cube = Annealing.solve2(cube, 1);
+		//System.out.println(cube);
 		
 		/*cube = Annealing.solve2(cube, 2);
 		System.out.println(cube);*/

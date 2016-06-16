@@ -20,7 +20,7 @@ public class Application {
 		cube = Annealing.solve2(cube, 0);
 		System.out.println(cube);
 		
-		cube = Annealing.solve2(cube, 3);
+		cube = Annealing.solve2(cube, 1);
 		System.out.println(cube);
 		
 		/*cube = Annealing.solve2(cube, 2);

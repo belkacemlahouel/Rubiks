@@ -314,7 +314,7 @@ public class Annealing {
 			while (i < axis_set.length) {
 				StringBuilder mystr = new StringBuilder();
 				mystr.append(axis_set[i]);
-				mystr.append(OFAPEL);
+				mystr.append(formule);
 				mystr.append(axis_set[i+1]);
 				tmp.add(mystr.toString());
 				i = i+2;

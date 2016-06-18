@@ -353,23 +353,6 @@ public class Cube44 {
 		return true;
 	}
 	
-	public void shuffle() {
-		int nb_moves = MOVES.length;
-		Random rand = new Random();
-		
-		for (int i = 0; i < 50; ++i)
-			executeMove(MOVES[rand.nextInt(nb_moves)]);
-	}
-	
-	
-	public void shuffle(int nb_sh) {
-		int nb_moves = MOVES.length;
-		Random rand = new Random();
-		
-		for (int i = 0; i < nb_sh; ++i)
-			executeMove(MOVES[rand.nextInt(nb_moves)]);
-	}
-	
 	public void executeSeq(String[] moves) {
 		for (String mv : moves) {
 			executeSeq(mv);
@@ -601,4 +584,32 @@ public class Cube44 {
 	public void YYinv(){tright();} //rotation inverse du cube selon l'axe x
 	public void ZZ(){tdown(); tright(); tup();} //rotation du cube selon l'axe x
 	public void ZZinv(){tdown(); tleft(); tup();} //rotation inverse du cube selon l'axe x
+
+	public void shuffle() {
+		int nb_moves = MOVES.length;
+		Random rand = new Random();
+		
+		for (int i = 0; i < 50; ++i)
+			executeMove(MOVES[rand.nextInt(nb_moves)]);
+	}
+	
+	public void shuffle(int iter) {
+		int nb_moves = MOVES.length;
+		Random rand = new Random();
+		
+		for (int i = 0; i < iter; ++i)
+			executeMove(MOVES[rand.nextInt(nb_moves)]);
+	}
+	
+	public String shuffle1(int iter) {
+		int nb_moves = MOVES.length;
+		Random rand = new Random();
+		StringBuilder str = new StringBuilder();
+		for (int i = 0; i < iter; ++i){
+			String tmp = MOVES[rand.nextInt(nb_moves)];
+			executeMove(tmp);
+			str.append(tmp);
+		}
+		return str.toString();
+	}
 }

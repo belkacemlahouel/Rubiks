@@ -6,7 +6,7 @@ import java.util.Random;
 
 public class Algorithme {
 	
-	static private int NN = 700; 
+	static private int NN = 700;  //nombre d'iteration pour searchTabu
 	static private int max_tabu_size = 400; 
 	private ArrayList<String> formules;
 	private ArrayList<String> formule_rand;
@@ -105,15 +105,11 @@ public class Algorithme {
 		return evl;
 	}
 	
-	@SuppressWarnings("unused")
-	private boolean isBetter1(Cube44 c1, Cube44 c2){
-		return c1.valeur1() >= c2.valeur1();
-	}
-	
-	private boolean isBetter2(Cube44 c1, Cube44 c2){
+	private boolean isBetter(Cube44 c1, Cube44 c2){
 		return eval(c1) >= eval(c2);
 	}
 	
+	//fonction utilitaire pour traiter les differentes formules issus de la rotation du cube
 	void addAxisToFormulas(){
 		ArrayList<String> tmp = new ArrayList<String>();
 		int i;
@@ -144,38 +140,35 @@ public class Algorithme {
 		return res;
 	}
 	
-	//Recherche tabou
+	//Recherche tabou revisee
 	public Cube44 tabuSearch(Cube44 c){
 		Cube44 res = new Cube44(c), tmpSolu = new Cube44(c), bestNeigh = new Cube44(c);
 		ArrayList<Cube44> tabu_list = new ArrayList<Cube44>();
 		int stop = 0, shuffle_count = 0, current_value = 0;
-		System.err.println("Valeur: " + res.valeur1());
-		StringBuilder complete_moves = new StringBuilder();
+		StringBuilder complete_moves = new StringBuilder(); //mouvements totaux effectuee
 		while(stop < NN && !res.isSolved()){
-			boolean first_iteration = true;
-			//generation du voisinage
 			String tmpstr = "";
 			int iteration = 0;
-			for(Cube44 cube : generateNeigh(tmpSolu)){
-				if(first_iteration){
+			for(Cube44 cube : generateNeigh(tmpSolu)){ //generation du voisinage
+				if(iteration == 0){
+					//on choisit tout d'abord le premier voisin
 					bestNeigh.set(cube);
-					first_iteration = false;
 				}
-				else if (!tabu_list.contains(cube) && (isBetter2(cube, bestNeigh))) {
+				else if (!tabu_list.contains(cube) && (isBetter(cube, bestNeigh))) {
 					tmpstr = formules.get(iteration);
 					bestNeigh.set(cube);
 				}
 				iteration++;
 			}
-			complete_moves.append(tmpstr);
+			complete_moves.append(tmpstr); 
 			tmpSolu.set(bestNeigh);
-			if(!isBetter2(res, tmpSolu)){
+			if(!isBetter(res, tmpSolu)){
 				System.err.println("Valeur: " + eval(res) + " < " + eval(tmpSolu));
 				res.set(tmpSolu);
 			}
 
 			if(current_value == eval(tmpSolu)){
-				//si on reste bloquer � une certaine valeur trop longtemps
+				//si on reste bloquer sur une certaine valeur trop longtemps
 				//on shuffle de 5 mouvements
 				shuffle_count++;
 				if(shuffle_count > 20){
@@ -187,15 +180,14 @@ public class Algorithme {
 				shuffle_count = 0;
 			}
 			current_value = eval(tmpSolu);
+			
 			//Mise a jour de la liste tabou
 			tabu_list.add(bestNeigh);
 			if(tabu_list.size() > max_tabu_size){
 				tabu_list.remove(0);
 			}
-			if(stop%30==0) {
+			if(stop%30==0) 
 				System.err.println(stop*100.0/NN);
-				System.err.println(eval(tmpSolu));
-			}
 			stop++;
 		}
 		System.err.println("Valeur: " + res.valeur1());
@@ -203,7 +195,7 @@ public class Algorithme {
 		return res;
 	}
 	
-
+	//fonction utilitaire pour la lecture de fichier
 	public static void readFile(String name, ArrayList<String> formules){
 		BufferedReader br = null;
 		try {
@@ -226,6 +218,7 @@ public class Algorithme {
 		
 	}
 	
+	//algorithme purement aleatoire
 	public Cube44 randomAlgo(Cube44 c){
 		Random randomGenerator = new Random();
 		int len = formule_rand.size();
